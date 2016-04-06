@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>北斗的博客</title>
+  <title>Jetspeed官方手册-PSML | 北斗的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="日常积累">
-<meta property="og:type" content="website">
-<meta property="og:title" content="北斗的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="翻译Jetspeed的PSML文档。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetspeed官方手册-PSML">
+<meta property="og:url" content="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/index.html">
 <meta property="og:site_name" content="北斗的博客">
-<meta property="og:description" content="日常积累">
+<meta property="og:description" content="翻译Jetspeed的PSML文档。">
+<meta property="og:updated_time" content="2016-04-06T09:52:31.571Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="北斗的博客">
-<meta name="twitter:description" content="日常积累">
+<meta name="twitter:title" content="Jetspeed官方手册-PSML">
+<meta name="twitter:description" content="翻译Jetspeed的PSML文档。">
   
     <link rel="alternative" href="/atom.xml" title="北斗的博客" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Jetspeed-PSML翻译" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Jetspeed-PSML翻译" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/06/Jetspeed-PSML翻译/" class="article-date">
   <time datetime="2016-04-06T09:48:13.000Z" itemprop="datePublished">2016-04-06</time>
@@ -82,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/06/Jetspeed-PSML翻译/">Jetspeed官方手册-PSML</a>
+    <h1 class="article-title" itemprop="name">
+      Jetspeed官方手册-PSML
     </h1>
   
 
@@ -305,441 +304,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Jetspeed-Template翻译" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/06/Jetspeed-Template翻译/" class="article-date">
-  <time datetime="2016-04-06T06:46:12.000Z" itemprop="datePublished">2016-04-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/06/Jetspeed-Template翻译/">Jetspeed官方手册-Template</a>
-    </h1>
+    <a href="/2016/04/06/Jetspeed-Template翻译/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jetspeed官方手册-Template</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://portals.apache.org/jetspeed-2/deployguide/guide-page-templates.html" target="_blank" rel="external">原文地址</a></p>
-<h2 id="Introduction-to-PSML-Templates"><a href="#Introduction-to-PSML-Templates" class="headerlink" title="Introduction to PSML Templates"></a>Introduction to PSML Templates</h2><p>In the 2.2.1 release of Jetspeed, we introduced three new kinds of PSML templates: </p>
-<ul>
-<li>Template Pages (TPSML)</li>
-<li>Fragment Definitions (FPSML)</li>
-<li>Dynamic Template Pages (DPSML)</li>
-</ul>
-<p><em>在Jetspeed 2.2.1发布版中，我们引入了三种全新的PSML模板：</em></p>
-<ul>
-<li><em>模板页 (TPSML)</em></li>
-<li><em>片段定义 (FPSML)</em></li>
-<li><em>动态模板页 (DPSML)</em></li>
-</ul>
-<p>Templates are a special kind of re-usable PSML page. Templates centralize the declaration of portlets and page layout once, which can then be reused on many pages. Templates can save you lots of configuration time maintaining portlets on your pages. And administrator can add or remove a portlet to a template, and all pages associated with that template will pick up those portlets immediately. When you have many pages, templates can save you lots of administration time in publishing changes to each and every page in the system. Templates can also be secured, so that only administrators can modify them. This means that you can enforce sets of pages to always display certain portlets, for example in the left or right column. By securing the template, the templasized portlets are locked in place: they cannot be deleted or moved by the end user, only the administrator can edit the portlets in the template. However, the portlets declared on the merged page can be maintained normally by the end user, based on the security constraints of the target page. </p>
-<p><em>模板是一种特殊类型的可复用PSML页面。模板一旦在portlets和页面布局中集中声明，就可以在很多页面中重用。在你维护页面上的portlet时，模板可以节省你大量的配置时间。并且管理员可以通过模板来添加或删除一个portlet，而且所有与模板有关的页面将会立即检出这些portlet。当你有很多页面时，系统中的每个页面在发布更改时，模板可以节省你大量的管理时间。模板还可以保证安全，以便只有管理员才可以对其进行修改。这意味着，你可以强制页面总是显示某些portlet，比如在左边或右边的列。通过保护模板，portlet可以被锁定到位：它们不能被最终用户删除或修改，模板中的portlet只能被管理员编辑。然而，基于目标页的安全约束，合并页面中声明的portlet通常可以由最终用户来维护。</em></p>
-<p>As of version 2.3.0, you cannot edit templates (TPSML, FPSML, DPSML) using the Jetspeed configuration tools. This means they must be edited as XML and then imported into the system. Future versions will support full customization of templates.</p>
-<p><em>在2.3.0版本中，你不能用Jetspeed配置工具来编辑模板（TPSML, FPSML, DPSML）。这意味着他们必须被当做XML来编辑，并导入到系统中。未来的版本将支持完全自定义的模板。</em></p>
-<h2 id="TPSML-Template-Pages"><a href="#TPSML-Template-Pages" class="headerlink" title="TPSML - Template Pages"></a>TPSML - Template Pages</h2><p>Template pages are used in combination with addressable PSML pages to create a merged view of a PSML page with the template. Template Pages are not addressable by URL: therefore you can never visit a template page. Templates are usually defined in enclosing folders, and are automatically merged with all pages in that folder and subfolders. There is a limitation that only one page template can be defined per folder. Templates placed in subfolders will override the template placed in a parent folder. Introducing a template page into the PSML system is as simple as dropping the .tpsml file into the file system (or you can use the Import administrative tool if you are storing PSML in the database).</p>
-<p><em>模板页可以与可寻址的PSML页结合使用，来创建带模板的PSML页面视图。模板页不能通过URL来寻址：因此你永远不能访问到一个模板页。模板通常定义在封闭的文件夹中，并自动合并到那个文件夹及子文件夹中的所有页面里。这有个限制，在每个文件夹中只能定义一个页面模板。放在子文件夹中的模板将会覆盖父文件夹中的模板。在PSML系统中引入页面模板很简单，只要将.tpsml文件放到文件系统中（或者你可以使用导入管理工具，如果你在数据库中存储PSML）。</em></p>
-<p>Templates were first introduced in version 2.2.1. If you download and run the Jetspeed demo, navigate to <a href="http://localhost:8080/jetspeed/portal" target="_blank" rel="external">http://localhost:8080/jetspeed/portal</a>, you will see an example of templates in action on the welcome page as shown in the screen shot below… </p>
-<p><em>模板首先在2.2.1版本中被引入。如果你下载并运行了Jetspeed演示，导航到<a href="http://localhost:8080/jetspeed/portal" target="_blank" rel="external">http://localhost:8080/jetspeed/portal</a> ，你将会在活动的欢迎页中看到一个模板的例子，就像下面的截图显示的一样…</em></p>
-<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/welcome-page.png" alt="welcome-page"></p>
-<p>The two portlets found in the far left and far right column are the Jetspeed Toolbox and Page Navigator portlets. These portlets are declared in a template, not in the actual pages (.psml). On the Page Navigator, press the Websites link, navigating to <a href="http://localhost:8080/jetspeed/portal/frames.psml" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/frames.psml</a>. You will again see the Jetspeed Toolbox and and Page Navigator portlets. These two portlets were declared only once, in a Page Template, not on each page. </p>
-<p><em>在最左边和最右边的列中找到两个portlet，分别是Jetspeed工具箱portlet和页面导航器portlet。这些portlet是在模板中声明，而不是在实际的页面（.psml）中。在页面导航器中，按照web站点链接，导航到<a href="http://localhost:8080/jetspeed/portal/frames.psml" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/frames.psml</a> 。你将再次看到Jetspeed工具箱portlet和页面导航器portlet。这两个portlet只在页面模板中声明了一次，而不是在每个页面中声明。</em></p>
-<p>As the visual below demonstrates, page templates merge a template with an addressable page, resulting in the displaying of a merged page: </p>
-<p><em>正如下面的视觉展示，页面模板与一个可寻址的页合并为一个模板，从而显示了一个合并的页面：</em></p>
-<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/PageTemplateMerged.png" alt="PageTemplateMerged"></p>
-<p><em>How to Create a Page Template</em></p>
-<p>In this section, you will learn how to create your own template pages (TPSML) in Jetspeed. Note that all the examples included here were testing on the Classic (Portal) Pipeline (/jetspeed/portal) with the 2.3.0 release of Jetspeed. Templates are designed to work with both the JetUI Pipeline as well as the Classic Pipeline. However, the JetUI pipeline has some special requirements, most notably is that it treats the Page Navigator and Toolbox as special portlets, and expects them to always be on all templates. The Classic Pipeline does not have any restrictions as of version 2.3.0. Another important issue to be aware of - up through version 2.3.0, templates may only be defined in XML definitions. There are no customization features for creating these templates with the Jetspeed customizer. Future releases will provide template customizers. To learn more about using templates with the JetUI Pipeline, read the JetUI documentation. The remainder of this document assumes you are using the Classic (/portal) pipeline. To learn more about using pipelines, read the Pipelines documentation.</p>
-<p><em>在这部分，你将会学习怎样在Jetspeed中创建你自己的模板页（TPSML）。注意：这里包含的全部示例都经过了Jetspeed 2.3.0发布版的经典（Portal）管道（/jetspeed/portal）测试。模板被设计为既可以在所有的JetUI管道中，又可以在经典管道中工作。然而，JetUI 管道有一些特殊的要求，最值得注意的是它的页面导航器和工具箱视为特殊的portlet，并期望它们总是能够要在所有模板上运行。在2.3.0版本中，经典管道没有任何限制。另一个重要的问题是意识到通过2.3.0版本升级，模板只能在XML中定义。在Jetspeed定制器中没有创建模板的自定义功能。将来的版本将提供模板定制。若要了解通过JetUI管道使用模板的详细信息，请阅读JetUI文档。本文档的其余部分假定你使用的经典（Portal）管道。若要了解使用管道的详细信息，请阅读管道文档。</em></p>
-<p>Lets get started creating a new page template. You will need to have Jetspeed running in order to facilitate demonstrating how templates work. First, start up Jetspeed, navigate to <a href="http://localhost:8080/jetspeed/portal" target="_blank" rel="external">http://localhost:8080/jetspeed/portal</a>, and login to the demo system with the admin user, password also admin. Navigate to any other page with the Page Navigator. You will always see the Page Navigator portlet in the left column, and the Jetspeed Toolbox in the right column. The end user cannot remove these portlets with the Jetspeed Customizer, not even the admin user. No matter which page you navigate to, you will see the default system template that comes with the demo. This template file is template.tpsml, and it is located in the pages directory of the demo distribution. (If you built Jetspeed from source, it will be located in WEB-INF/pages). Lets override the page template for the Admin user home space. Remember that spaces are accessible from the drop down menu in the Jetspeed header. From the Spaces menu, select My Pages. Selecting My Pages will display a page located at the URL <a href="http://localhost:8080/jetspeed/portal/_user/admin" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/_user/admin</a> On the file system, the home space for the admin user is actually located under pages/_user/admin. Go ahead and find that directory on your file system before proceeding.</p>
-<p><em>我们开始创建一个新的页面模板。你需要运行Jetspeed，以便演示模板是如何工作的。首先，启动Jetspeed，导航到<a href="http://localhost:8080/jetspeed/portal" target="_blank" rel="external">http://localhost:8080/jetspeed/portal</a> ，以管理员身份登录演示系统，密码也是admin。用页面导航器导航到其他页。你总会在左列看到页面导航器portlet，在右列看到Jetspeed工具箱portlet。最终用户不能使用Jetspeed定制器来移动这些portlet，连管理员也不能。不论你导航到哪一页，您将看到默认系统模板附带的演示。这个模板文件是<code>template.tpsml</code>，它位于演示发布的页目录。（如果你是由源码构建的Jetspeed，它将位于WEB-INF/pages）让我们在管理员的工作空间内重写这个页面模板。记住，空间是从Jetspeed头部的下拉菜单来访问。从空间菜单，选择<code>My Pages</code>。选择<code>My Pages</code>将显示位于文件系统中的<a href="http://localhost:8080/jetspeed/portal/_user/admin" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/_user/admin</a> 的页面，管理员的工作空间实际是位于pages/_user/admin下的。继续，在你之前的文件系统上找到该目录。</em></p>
-<p>Now bring up a text editor, and create an empty file named template.tpsml. Place that file in the pages/_user/admin folder. Jetspeed will now automatically use your new template for all pages in that folder (and any subfolder of the pages/_user/admin space folder). When creating a Page Template, you will want to reference the Jetspeed 2.2 XML Schemas. You can find the XML Schema declaration here: <a href="http://portals.apache.org/jetspeed-2/2.2/schemas/tpsml.xsd" target="_blank" rel="external">http://portals.apache.org/jetspeed-2/2.2/schemas/tpsml.xsd</a>“ All of your page template TPSML pages should start as follows…</p>
-<p><em>现在打开文本编辑器，创建一个名为<code>template.tpsml</code>的文件。把它放到<code>pages/_user/admin</code>文件夹里。Jetspeed将自动给此文件夹（和它的子文件夹）下的所有文件应用新的模板。当创建页面模板时，你可能要参考Jetspeed 2.2 XML模式。你可以通过<code>http://portals.apache.org/jetspeed-2/2.2/schemas/tpsml.xsd</code>来找到此模式的说明。你全部的TPSML页面模板应当像下面这样开始…</em></p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;page-template id=<span class="string">"definition"</span></span><br><span class="line">    xmlns=<span class="string">"http://portals.apache.org/jetspeed"</span></span><br><span class="line">    <span class="attribute">xmlns</span>:<span class="attribute">xsi="http</span>:<span class="comment">//www.w3.org/2001/XMLSchema-instance" </span></span><br><span class="line">    <span class="attribute">xsi</span>:<span class="attribute">schemaLocation="http</span>:<span class="comment">//portals.apache.org/jetspeed http://portals.apache.org/jetspeed-2/2.2/schemas/tpsml.xsd"&gt;</span></span><br></pre></td></tr></table></figure>
-<p>The root tag must always be declared as <page-template>. Page templates are an extension of plain PSML pages. Page templates can have many of the same XML elements as a page such as titles and fragments. Recommend becoming familiar with standard PSML pages before continuing. However, there are some important differences: </page-template></p>
-<ul>
-<li>The fragments that you define in your page template will be merged with all pages in the same folder, and sub-folders, unless a sub-folder overrides it with its own template</li>
-<li>You must declare one and only one <page-fragment> tag. This is the place holder for the referenced page which will be merged with the template</page-fragment></li>
-</ul>
-<p><em>根标签必须总是声明为<code>&lt;page-template&gt;</code>。页面模板是普通PSML页的扩展。做为一个页面，页面模板可以由很多相同的XML元素，比如标题和片段。在继续之前，推荐要熟悉标准的PSML页面。然而，这里有些重要的区别：</em></p>
-<ul>
-<li><em>在你的页面模板中定义的片段将会被同一文件夹下的所有页面合并，包括子文件夹，除非子文件夹内重写了它自己的模板</em></li>
-<li><em>你必须声明并且仅仅声明一个<code>&lt;page-fragment&gt;</code>标签。这是个将要合并的模板重的引用页面的占位符。</em></li>
-</ul>
-<p>The <page-fragment> tag is important. It declares where the current page will be inserted and merge into your template. </page-fragment></p>
-<p><em><code>&lt;page-fragment&gt;</code>标签是很重要的。它声明了当前页面将要插入和合并到你的模板中的位置。</em></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">..</span><br><span class="line">    &lt;page-fragment <span class="built_in">id</span>=<span class="string">"template-admin-home"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>/&gt;</span><br><span class="line">    &lt;/page-fragment&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>Notice that a page-fragment can have typical fragment attributes like id as well as sub-elements like row and column. The page-fragment tag is the place holder for the addressable page. The addressable page is merged in at this point, specified by the optional row and column properties, combining the template fragments with the fragments from the addressable page. Here is a complete template page definition for the admin home space. Go ahead and cut and paste this example into your text editor and save the file under pages/_user/admin/template.tpsml: </p>
-<p><em>注意：page-fragment可以有标准的片段属性，比如像id，子元素一样也有，比如row和column。page-fragment标签是可访问页面的占位符。在此处被合并的可访问页面，被规定了row和column属性，它的片段与模板片段联合使用。这里有一个完整的定义了管理员工作区域的模板页。继续，剪切和粘贴这个示例代码到你的文本编辑器中，并保存到<code>pages/_user/admin/template.tpsml</code>文件里：</em></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml <span class="built_in">version</span>=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;page-template <span class="built_in">id</span>=<span class="string">"admin-definition"</span></span><br><span class="line">    xmlns=<span class="string">"http://portals.apache.org/jetspeed"</span></span><br><span class="line">    xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://portals.apache.org/jetspeed http://portals.apache.org/jetspeed-2/2.2/schemas/tpsml.xsd"</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;title&gt;Example Template&lt;/title&gt;</span><br><span class="line">  &lt;fragment <span class="built_in">id</span>=<span class="string">"example-template-top"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityThreeColumns"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"sizes"</span> value=<span class="string">"15%,70%,15%"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line"></span><br><span class="line">   &lt;fragment <span class="built_in">id</span>=<span class="string">"example-left"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityOneColumn"</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">		&lt;fragment <span class="built_in">id</span>=<span class="string">"example-locale"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::LocaleSelector"</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span> /&gt;</span><br><span class="line">             &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span> /&gt;</span><br><span class="line">         &lt;/fragment&gt;</span><br><span class="line">        &lt;/fragment&gt;</span><br><span class="line"></span><br><span class="line">    &lt;page-fragment <span class="built_in">id</span>=<span class="string">"example-page-template"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"1"</span>/&gt;</span><br><span class="line">      &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>/&gt;</span><br><span class="line">    &lt;/page-fragment&gt;</span><br><span class="line"></span><br><span class="line">   &lt;fragment <span class="built_in">id</span>=<span class="string">"example-right"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityOneColumn"</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"2"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">		&lt;fragment <span class="built_in">id</span>=<span class="string">"example-forgotten"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::ForgottenPasswordPortlet"</span>&gt;</span><br><span class="line">                &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span> /&gt;</span><br><span class="line">                &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span> /&gt;</span><br><span class="line">        &lt;/fragment&gt;</span><br><span class="line">   &lt;/fragment&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/fragment&gt;</span><br><span class="line">&lt;/page-template&gt;</span><br></pre></td></tr></table></figure>
-<p>Refresh the page <a href="http://localhost:8080/jetspeed/portal/_user/admin" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/_user/admin</a>. You should now see some differences: like the Navigator and Toolbox are gone, and in their place are the portlets that you defined above, namely the Local Selector and Forgotten Password Portlet. Take a closer look at the XML file. Notice that we are using Jetspeed layout portlets to define the layout of the templacized page. In this example, we have a three column layout. The left column is defined by the example-left fragment. The middle column is key: this is our page-template and it will hold the actual PSML page. The right column is defined by the example-right fragment. When the template is merged with the page that you navigate to, the end result will contain a left and right column from the template, and a middle column containing the referenced page. This referenced page can have its own layout. For example if the referenced page has two columns, then the resulting merged page will have four columns, two from the template, and two from the included page. </p>
-<p><em>刷新<a href="http://localhost:8080/jetspeed/portal/_user/admin" target="_blank" rel="external">http://localhost:8080/jetspeed/portal/_user/admin</a> 。你现在会看到一些不同：页面导航器和工具箱没有了，在它们的位置上是你定义的portlet，名为本地化和忘记密码的portlet。仔细看XML文件。注意：我们使用了Jetspeed布局portlet来定义模板页的布局。在这个示例中，我们使用了三列的布局。左列是由<code>example-left</code>片段定义的。关键是中间列：这是我们的页面模板，它将控制真正的PSML页。右列是由<code>example-right</code>片段定义的。当模板合并你导航到的页面时，最终结果是将包含模板的左右列，以及引用到目标页内容的中间列。引用的页面可以有它自己的布局。例如，如果引用页有两列，那么合并的结果页将会有四列，两列来自模板，两列来自包含的页面。</em></p>
-<p>There is a problem though. First problem, you are stuck on this page, there are no longer any navigations available to you. Lets fix that by adding a Space Navigator to your template. Paste this code fragment into your file just above the fragment with an id of example-left and save the file:</p>
-<p><em>但这就有问题了。第一个问题，你被卡在这个页面上了，这儿没有任何可用的导航。让我们往你的模板里添加一个空间导航来修复它。将下面的代码粘贴到id为<code>example-left</code>的片段之前，并保存：</em></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"jsSpaceNavigator"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::SpaceNavigator"</span> decorator='clear'&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"y"</span> value=<span class="string">"300"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"x"</span> value=<span class="string">"20"</span>&gt;&lt;/<span class="keyword">property</span>&gt;            </span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
-<p>Refresh the page. You should now see a Space Navigator in the top area of your page. An interesting aspect of this fragment is that it is detached and placed at a specific coordinate on the page. Detached portlets are placed in a different plane than flow-driven layout portlets, whose positions are relative to their placement in the PSML definition. To read more about detached portlets see the JetUI documentation. </p>
-<p><em>刷新这个页面。你现在应该能看到在页面的顶部有一个空间导航了。这个片段一个有趣的方面是：它位于一个特殊的坐标上，脱离了页面。脱离的portlet相对于流驱动布局的portlet来说，它位于一个不同的平面，流驱动布局的portlet在PSML中定义的位置是相对的定位。若要了解脱离的portlet的详细信息，请阅读<a href="http://portals.apache.org/jetspeed-2/deployguide/guide-jetui.html" target="_blank" rel="external">JetUI文档</a>。</em></p>
-<p>There is another problem. We cannot navigate within the My Pages folder. In order to do that we need a Page Navigator. Lets add one to the template, so that all the pages in this folder can use it. Paste in the code snipped below immediately after the fragment end tag of the fragment with an id of example-locale: </p>
-<p><em>还有另外一个问题。我们不能在<code>My Pages</code>文件夹内导航。为达到这一目的，我们需要一个页面导航。让我们往模板里添加一个，以便这个文件夹中的全部页面都能用。立即剪切下面的代码到id为<code>example-locale</code>的片段结束标签的后边：</em></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"jsPageNavigator"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::PageNavigator"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"1"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"tool"</span> value=<span class="string">"true"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
-<p>Refresh the page. You should now see a page navigator portlet immediately below the Locale Selector portlet on the left hand side of the page. As you navigate to other pages in this folder, such as the My Account page, you should always still see our four portlets from the template (Locale Selector, Page Navigator, Forgotten Password, and the Space Navigator). </p>
-<p><em>刷新这个页面。你现在应该能看到在页面左边的本地化portlet下面，有一个页面导航portlet。随着你导航到这个文件夹下的其他页面，例如<code>我的账户</code>页面，你还是应该看到我们的这四个来自模板中的portlet（本地化，页面导航，忘记密码，以及空间导航）。</em></p>
-<p>We hope these examples helped getting you started using page templates in Jetpeed. If you have further questions, do not be shy about asking questions on the Jetspeed Users List. </p>
-<p><em>但愿这些例子可以在你开始使用页面模板时有所帮助。如果你有其他问题，到Jetspeed用户列表提问时也不要害羞。</em></p>
-<h2 id="FPSML-Fragment-Definitions"><a href="#FPSML-Fragment-Definitions" class="headerlink" title="FPSML - Fragment Definitions"></a>FPSML - Fragment Definitions</h2><p>Fragment Definition Pages are buckets for declaring reusable portlet definitions which can then be referenced and placed in normal PSML files. Whereas TPSML pages also follow a reuse pattern, FPSML is similar but solves a slightly different case. TPSML is reuse by template. You will always get the entire layout of the template. Your page is included inside the template. The FPSML use case is different. With FPSML, your page will is the container where fragment definitions are included into the your page. </p>
-<p><em>未翻译…</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cimooh2u30005twlonl7fdusp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-Jetspeed-Layouts翻译" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/01/Jetspeed-Layouts翻译/" class="article-date">
-  <time datetime="2016-04-01T05:34:48.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/Jetspeed-Layouts翻译/">Jetspeed官方手册-Layouts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://portals.apache.org/jetspeed-2/devguide/guide-layouts.html" target="_blank" rel="external">原文地址</a></p>
-<h2 id="Layouts"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts</h2><p>Layout templates are packaged in special Jetspeed-specific and deployable portlet applications. Layout templates control the overall aggregation of a portal page. Layout templates are combined with portlets, providing a component model for aggregation. Jetspeed-2 comes out of the box with several layout components including one, two and three column layouts. See the Jetspeed-2 Layouts below for all available Layouts in the default Jetspeed-2 system. Of course you can define and derive your own layouts. </p>
-<p><em>布局模板被打包成特殊的Jetspeed特定和可部署的portlet应用程序。布局模板控制着整体聚合的门户页面。布局模板结合portlet，为聚合提供一个组件模型。Jetspeed-2开箱即用带有几个布局组件包括一、 二、 三列布局。在下面可以看到在Jetspeed-2默认系统中所有可用的布局。当然你可以定义和派生您自己的布局。</em></p>
-<p>With regards to aggregation, layouts define how a single portal page is aggregated. A layout defines the fashion in which grouping of fragments will organized relative to the final, aggregated content of a request to the portal. Layouts are defined by a portlet which applies an algorithm to a template to generate the aggregated content of a page. Typical algorithms are two column, three column, nested. </p>
-<p><em>关于聚合，布局定义了单个门户页面是如何聚合的。在片段组中定义的布局将会组织好请求到门户的最终聚合内容的风格。被定义成一个portlet的布局，由应用系统的算法生成为聚合了页面内容的模板。典型的算法是两列，三列，嵌套。</em></p>
-<p>A layout is made up of: </p>
-<ul>
-<li>One or more templates</li>
-<li>A template descriptor</li>
-<li>Images</li>
-<li>A Stylesheet (CSS)</li>
-<li>Macros</li>
-</ul>
-<p><em>一个布局组成如下 ︰</em></p>
-<ul>
-<li><em>一个或多个模板</em></li>
-<li><em>一个模板描述符板</em></li>
-<li><em>图像</em></li>
-<li><em>一个样式表 (CSS)</em></li>
-<li><em>宏</em></li>
-</ul>
-<p><img src="http://portals.apache.org/jetspeed-2/devguide/images/layouts-overview.png" alt="layouts-overview"></p>
-<h2 id="Layouts-Packaging"><a href="#Layouts-Packaging" class="headerlink" title="Layouts Packaging"></a>Layouts Packaging</h2><p>Layouts are packaged as standard portlet applications. Layouts usual have a Operations Supported:</p>
-<ul>
-<li>Deploy</li>
-<li>Un-deploy</li>
-<li>Re-deploy</li>
-</ul>
-<p><em>布局被打包成一个标准的portlet应用。布局通常支持的操作有：</em></p>
-<ul>
-<li><em>部署</em></li>
-<li><em>解除部署</em></li>
-<li><em>重新部署</em></li>
-</ul>
-<h2 id="Jetspeed-2-Layouts"><a href="#Jetspeed-2-Layouts" class="headerlink" title="Jetspeed-2 Layouts"></a>Jetspeed-2 Layouts</h2><p>Jetspeed-2 comes out of the box with several layout components including one, two and three column layouts. Of course you can define and derive your own layouts. The table below lists the available layout components in Jetspeed. When customizing (editing) a page, the layout component is selected. One layout may be assigned per PSML page. </p>
-<p><em>Jetspeed-2开箱即用带有几个布局组件，包括一、 二、 三列布局。当然你可以定义和派生您自己的布局。下表列出了在Jetspeed中可用的布局组件。当自定义（编辑）一个页面时，布局组件就被选中了。一种布局可能被分配给每 PSML页。</em></p>
-<table>
-<thead>
-<tr>
-<th>Layout</th>
-<th>Type</th>
-<th style="text-align:center">Columns</th>
-<th style="text-align:center">Sizes</th>
-<th>Modes</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VelocityOneColumn</td>
-<td>OneColumn</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">100%</td>
-<td>view,edit,help</td>
-<td>A single column display of one or more fragments taking up 100% of the portlet display area.</td>
-</tr>
-<tr>
-<td>VelocityTwoColumns</td>
-<td>TwoColumns</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">50%,50%</td>
-<td>view,edit,help</td>
-<td>A two column display of one or more fragments where each column is allocated to 50% of the portlet display area respectively. Fragments may be placed in either column using PSML fragment definitions.</td>
-</tr>
-<tr>
-<td>VelocityTwoColumnsSmallLeft</td>
-<td>TwoColumns</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">15%,85%</td>
-<td>view,edit,help</td>
-<td>A two column display of one or more fragments where the left column is allocated to 15% of the portlet display area, and the right column is allocated to 85% of the portlet display area. Fragments may be placed in either column using PSML fragment definitions.</td>
-</tr>
-<tr>
-<td>VelocityThreeColumns</td>
-<td>ThreeColumns</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">33%,33%,33%</td>
-<td>view,edit,help</td>
-<td>A three column display of one or more fragments where each column is allocated to 33% of the portlet display area respectively. Fragments may be placed in either column using PSML fragment definitions.</td>
-</tr>
-<tr>
-<td>VelocityOneColumnNoActions,<br>VelocityTwoColumnsNoActions,<br>VelocityThreeColumnsNoActions</td>
-<td></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>view</td>
-<td>Same parameters as their counterparts with actions, but no decorator actions are displayed.</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>布局</th>
-<th>类型</th>
-<th style="text-align:center">列</th>
-<th style="text-align:center">尺寸</th>
-<th>模式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VelocityOneColumn</td>
-<td>OneColumn</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">100%</td>
-<td>查看、 编辑、 帮助</td>
-<td>用单个列，列占用portlet的100%区域来显示一个或多个片段。</td>
-</tr>
-<tr>
-<td>VelocityTwoColumns</td>
-<td>TwoColumns</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">50%,50%</td>
-<td>查看、 编辑、 帮助</td>
-<td>用两列，每列分别占用portlet的50%区域来显示一个或多个片段。每列中的片段可以被PSML定义的片段替换。</td>
-</tr>
-<tr>
-<td>VelocityTwoColumnsSmallLeft</td>
-<td>TwoColumns</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">15%,85%</td>
-<td>查看、 编辑、 帮助</td>
-<td>用两列，左列占用portlet的15%区域，右列占用portlet的85%区域，来显示一个或多个片段。每列中的片段可以被PSML定义的片段替换。</td>
-</tr>
-<tr>
-<td>VelocityThreeColumns</td>
-<td>ThreeColumns</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">33%,33%,33%</td>
-<td>查看、 编辑、 帮助</td>
-<td>用三列，每列分别占用portlet的33%区域来显示一个或多个片段。每列中的片段可以被PSML定义的片段替换。</td>
-</tr>
-<tr>
-<td>VelocityOneColumnNoActions,<br>VelocityTwoColumnsNoActions,<br>VelocityThreeColumnsNoActions</td>
-<td></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>查看</td>
-<td>将显示相同的同行与行动，但没有装饰的操作参数。</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cimooh2tt0000twlo9kidm98q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-桃花庵歌" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/29/桃花庵歌/" class="article-date">
-  <time datetime="2016-03-29T08:44:00.000Z" itemprop="datePublished">2016-03-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/测试/">测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/29/桃花庵歌/">桃花庵歌</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>桃花庵歌<br>朝代：明代<br>作者：唐寅<br>原文：<br>桃花坞里桃花庵，桃花庵下桃花仙。<br>桃花仙人种桃树，又折花枝当酒钱。<br>酒醒只在花前坐，酒醉还须花下眠。<br>花前花后日复日，酒醉酒醒年复年。<br>不愿鞠躬车马前，但愿老死花酒间。<br>车尘马足贵者趣，酒盏花枝贫者缘。<br>若将富贵比贫贱，一在平地一在天。<br>若将贫贱比车马，他得驱驰我得闲。<br>世人笑我太疯癫，我笑世人看不穿。<br>记得五陵豪杰墓，无酒无花锄作田。</p>
-<p>土匪国里土匪党，土匪党下土匪帮；<br>土匪党帮串豪富，又杀平民夺产田<br>人前高叫是公仆，背后尽把财色贪；<br>半败半腐日复日，贪财贪色年复年<br>但愿老死权贵间，不愿鞠躬屁民前；<br>天上人间权者趣，海天盛筵富者缘<br>若将民主比专政，一在平地一在天；<br>若将专政比垄断，它占资源又弄权<br>别人笑我太疯癫，我笑他人看不穿；<br>舔菊五毛遍地是，无数脑残评论员<br>还有成批奴才狗，砖家叫兽扎堆骗；<br>寡廉鲜耻当高尚，贱卖灵魂辱祖先！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimooh2ul000rtwlozq815xkd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/28/test/" class="article-date">
-  <time datetime="2016-03-28T02:30:48.000Z" itemprop="datePublished">2016-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/测试/">测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/28/test/">这是一篇测试文章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="测试一个"><a href="#测试一个" class="headerlink" title="测试一个"></a>测试一个</h3><p><strong>呵呵</strong></p>
-<blockquote>
-<p>走起—!aaa</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/test/" data-id="cimooh2ty0001twlo6hhiysy7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/23/hello-world/" class="article-date">
-  <time datetime="2016-03-23T02:02:06.168Z" itemprop="datePublished">2016-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/23/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/hello-world/" data-id="cimooh2u50007twlop4kq2857" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
           <aside id="sidebar">
