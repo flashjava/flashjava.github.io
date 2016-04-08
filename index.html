@@ -65,6 +65,148 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Jetspeed-Decorators翻译" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/Jetspeed-Decorators翻译/" class="article-date">
+  <time datetime="2016-04-07T03:21:30.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/Jetspeed-Decorators翻译/">Jetspeed官方手册-Decorators</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://portals.apache.org/jetspeed-2/devguide/guide-decorators.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Introduction-to-Decorators"><a href="#Introduction-to-Decorators" class="headerlink" title="Introduction to Decorators"></a>Introduction to Decorators</h2><p>Decorators are defined as any static or semi-static markup surrounding a dynamically generated Fragment. Decorators are usually written with either Velocity or JSP templates. This guide will focus primarily on using the Velocity scripting language to build decoration. However, most of the standards and approaches described here can be applied to writing decroations in other scripting languages. </p>
+<p><em>装饰器被定义为任何静态或准静态的标记周围动态生成的片段。装饰器通常由Velocity或JSP模板编写。本手册将主要聚焦在用Velocity脚本语言来创建装饰器。然而，大多数标准和这里描述的方法也适用于用其他的脚本语言来书写装饰器。</em></p>
+<p>There are two different types of decorations that are used when building a page; Portlet and Layout (or page). </p>
+<p><em>当装饰器用于构建页面；portlet和布局（或页面）时，分为两种不同的类型。</em></p>
+<p>Portlet decorations are the “window dressings” of Jetspeed. They wrap each indivual portlet fragment’s rendered content with HTML (XHTML, VXML, etc). Portlet decoration’s are responsible for displaying the appropriate title and any buttons associated with changing window states or portlet modes. </p>
+<p><em>Portlet装饰器是Jetspeed的“窗口装饰”。它们用HTML（XHTML，VXML等）包裹每个个体portlet片段的渲染后内容。在改变窗口状态或portlet模式时，Portlet装饰器负责显示适当的标题和任一有关联的按钮。</em></p>
+<p>Layout or Page decorations responsible for providind a “header” area and “footer” area for a single portal page which is represented by a .psml document (see: Documentation for Designers working with PSML for more information on psml). They also provide general style information for the page and portlets. However, portlet level style settings can be overidden at the portlet decoration level.</p>
+<p><em>布局或页面装饰器负责为一个由.psml文档所描绘的单独门户页面提供一个“头部”区域和“底部”区域（见：设计者使用PSML文档，获得psml的详细信息）。它们还为页面和portlet提供通用的样式信息。然而，portlet级的样式设置可以覆盖portlet装饰器级的样式。</em></p>
+<h2 id="Decoration-File-Structure"><a href="#Decoration-File-Structure" class="headerlink" title="Decoration File Structure"></a>Decoration File Structure</h2><p>All decorations are stored in a directory directly off of the web applications root called decorations. The two primary directories under the here are layout for layout decorations and portlet for portlet decorations. Individual decoartions are housed in their own directories underneath these two directories. The name of the directory you create for under either layout or portlet is how Jetspeed will locate your decoration. We will go into further detail on how this works later on in this guide. </p>
+<p><em>全部装饰器都存储在一个名为decorations的目录中，此目录直接位于web应用程序根目录。在它下面有两个主要的目录，布局装饰器使用layout目录，portlet装饰器使用portlet目录。在这两个目录下，单独的装饰器被放置在它们自己的目录里。无论是在布局还是在portlet下，Jetspeed将会依据你所创建的目录名称定位到你的装饰器。在本手册后面，我们将更详细地介绍它是如何工作的。</em></p>
+<h2 id="Anatomy-of-a-Layout-Page-Decoration"><a href="#Anatomy-of-a-Layout-Page-Decoration" class="headerlink" title="Anatomy of a Layout(Page) Decoration"></a>Anatomy of a Layout(Page) Decoration</h2><h3 id="Four-Files-in-a-Nutshell"><a href="#Four-Files-in-a-Nutshell" class="headerlink" title="Four Files in a Nutshell"></a>Four Files in a Nutshell</h3><p>In it’s most basic form a Layout Decroation only requires you to define four files: </p>
+<p><em>大多数时候，在一个布局装饰器中，基本上你只需要定义四个文件：</em></p>
+<ul>
+<li>decorator.properties</li>
+<li>styles.css</li>
+<li>header.vm</li>
+<li>footer.vm</li>
+</ul>
+<p>Three of these files; decorator.properties, header.vm, and footer.vm go directly into the directory you create under /decorations/layout. The styles.css needs to be put into a subdirectory of your decoration names css/. </p>
+<p><em><code>decorator.properties</code>，<code>header.vm</code>，<code>footer.vm</code>这三个文件直接放置在<code>/decorations/layout</code>下面的你所创建的目录下。<code>styles.css</code>文件需要放置在你的装饰器的名为<code>css</code>的子目录下。</em></p>
+<h3 id="Basic-Layout-Decoration-Configuration-decorator-properties"><a href="#Basic-Layout-Decoration-Configuration-decorator-properties" class="headerlink" title="Basic Layout Decoration Configuration: decorator.properties"></a>Basic Layout Decoration Configuration: decorator.properties</h3><p>The decorator.properties file holds basic information about your layout decoration. In all actuallity, this file can be blank, but we still require that it be present as it is used by other APIs to “discover” available decorations. With that being said, it is safe to assume that all the properties defined below are optional. </p>
+<p><em><code>decorator.properties</code>文件保存着你的布局装饰器的基本信息。老实说，这个文件可以是空白的，但我们还是要求它能显示出这是个能用的装饰器，以便被其他APIs“发现”。之前说过了，它是安全地假设，下面定义的所有属性都是可选的。</em></p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base.css.class</td>
+<td>This value is generally placed in the top most element tag of your header template. You will see how it is used when we go into development of a header template.<br><br><em>（这个值通常放置在你的头部模板的很多元素标签的顶端。当我们开发一个头部模板时，你将会看到它是如何使用的。）</em></td>
+<td>Defaults to the name of your decoration</td>
+</tr>
+<tr>
+<td>stylesheet</td>
+<td>Relative path to your decoration’s stylesheet</td>
+<td>css/styles.css</td>
+</tr>
+<tr>
+<td>header</td>
+<td>Relative path to your decoration’s header template</td>
+<td>header.vm</td>
+</tr>
+<tr>
+<td>footer</td>
+<td>Relative path to your decoration’s footer template</td>
+<td>footer.vm</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Top-o’-the-Page-to-ya-header-vm"><a href="#Top-o’-the-Page-to-ya-header-vm" class="headerlink" title="Top o’ the Page to ya: header.vm"></a>Top o’ the Page to ya: header.vm</h3><p>The header.vm represents the top portion of your portal page. Below is a section by section walkthrough of the basics required to write a functional header template. </p>
+<p><em><code>header.vm</code>代表你门户页面的顶部。下面是逐节演练的写入功能页眉模板所需的基础知识。</em></p>
+<p>NOTICE: It is assumed that the reader is proficient in both the use of HTML and CSS. A rudimentary knowledge of Velocity helps but is not required to develop a decoration. </p>
+<p><em>注意：假设读者是精通使用HTML和CSS的。具有Velocity基础知识会有助于开发装饰器，但不是必须的。</em></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;html&gt;</span></span><br><span class="line">   <span class="section">&lt;head&gt;</span></span><br><span class="line">     <span class="comment">#defineLayoutObjects()</span></span><br></pre></td></tr></table></figure>
+<p>The first two lines should be obvious, if they are not, this guide from here on out will not be much help to you ;-) </p>
+<p><em>前两行应该是显而易见的，如果你不这样认为，那从这儿开始，本手册将不会给你很大帮助。</em>;-) </p>
+<h3 id="Our-First-Macro-defineLayoutObjects"><a href="#Our-First-Macro-defineLayoutObjects" class="headerlink" title="Our First Macro: #defineLayoutObjects()"></a>Our First Macro: #defineLayoutObjects()</h3><p>Now the line containing #defineLayoutObjects() will not be as obvious in its purpose as the previous two. #defineLayoutObjects() is what is known, in Velocity vernacular, as a macro. A macro is a predefined snippet of Velocity code that can be reused within any Velocity template. All of the global macros we will be using (including this one) are defined within the WEB-INF/jetspeed_macros.vm. Later in this guide we will discuss supplying your own, custom macros for assisting you in your decoration development, if you choose to. Now, back to the #defineLayoutObjects(). #defineLayoutObjects() adds values to Velocity that will be accessible within header.vm, footer.vm, other macros and all of your portlet decoration templates. We could easily stop here regarding #defineLayoutObjects(), however, I feel it can be helpful to have some insights into the inner workings of Velocity for the uninitiated. With out further ado, the code: </p>
+<p><em>现在包含了<code>#defineLayoutObjects()</code>的这一行的用途就不像前两个那样明显了。什么会明白<code>#defineLayoutObjects()</code>呢，在Velocity语境中，它被当做一个宏。宏是Velocity的预定义代码段，它可以在任意Velocity模板中复用。我们要使用的所有的全局宏（包括这个）是在<code>WEB-INF/jetspeed_macros.vm</code>中定义的。在本手册的后面，我们将会详述提供你自己的，定制的宏，来协助你进行装饰器开发，如果你想要的话。现在，回到<code>#defineLayoutObjects()</code>。<code>#defineLayoutObjects()</code>向Velocity中添加了值，它可以被<code>header.vm</code>，<code>footer.vm</code>，其他的宏，以及你全部的装饰器模板使用。我们可以轻松地就在这儿停止关于<code>#defineLayoutObjects()</code>的讨论，然而，我觉得对新手来说，了解一些Velocity的内部工作是有帮助的。进一步，看代码： </em></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#macro (defineLayoutObjects)</span><br><span class="line">    #set($preferedLocale = $JS2RequestContext.locale)</span><br><span class="line">    #set($rootFragment = $jetspeed.currentFragment)</span><br><span class="line">    #set($site = $request.getAttribute(<span class="string">"org.apache.jetspeed.portalsite.PortalSiteRequestContext"</span>))</span><br><span class="line">    #set($theme = $request.getAttribute(<span class="string">"org.apache.jetspeed.theme"</span>))</span><br><span class="line">    #set($layoutDecoration = $theme.getDecoration($rootFragment))</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+<p>Hmm. What is actually happening here. Okay first off we have, #set(), this is what is known as a directive in Velocity. A directive is built-in functionallity and not a macro. #set() is pretty straight forward in that it takes the value on the right of the = and assigns it to the left. Cool, that seems fairly straight forward. But how does one work with these values and where the heck did $JS2RequestContext.locale come from? I guess i should take a quick step back and describe how we work with objects in Velocity. All objects available to a Velocity template can be referenced via the $someObject notation. Knowing that much invoking a method , let’s getFoo(), can be done just like this $someObject.getFoo(). Even cooler is the fact we can short-hand getter methods that don’t take any arguments like this, $someObject.foo. As for this $JS2RequestContext this is actually an instance of the org.apache.jetspeed.RequestContext that has been availble to Velocity by Jetspeed itself. So, by looking the javadoc for org.apache.jetspeed.RequestContext we see $JS2RequestContext.locale will give us an instance of java.util.Locale that represents the locale of the current user. Couldn’t be much simpler than that could it?</p>
+<p><em>嗯。这儿实际上发生了什么。好的，我们首先<code>set()</code>，在Velocity里它被认作是一条指令。指令是内置的函数，不是宏。<code>set()</code>直接地把=右边的值赋给了左边。酷，这似乎是相当直截了当。但是这些值怎样做一项工作，并且<code>$JS2RequestContext.locale</code>从哪儿来的呢？我想我应该快退一步，描述一下在Velocity中我们的对象是如何工作的。在Velocity模板中，我们可以通过<code>$someObject</code>符号获得所有对象的引用。知道这些了，就能调用一个方法，让我们调用<code>getFoo()</code>，就能像<code>$someObject.getFoo()</code>这样来使用。更酷的是，事实上我们可以不带任何参数，就能快捷地获得方法，像这样，<code>$someObject.foo</code>。至于这个<code>$JS2RequestContext</code>，事实上它是Jetspeed自己通过Velocity获得的一个<code>org.apache.jetspeed.RequestContext</code>实例。因此，通过查看<code>org.apache.jetspeed.RequestContext</code>的javadoc，我们知道了<code>$JS2RequestContext.locale</code>会给我们一个<code>java.util.Locale</code>实例，它表示当前用户的区域设置。不能比这再简单了，不是吗？</em>  </p>
+<p>Next up we have this line #set($rootFragment = $jetspeed.currentFragment) another set() statement, this time creating an object called $rootFragment which is an instance of org.apache.jetspeed.om.page.ContentFragment. It is really not relevant to this guide to describe what $jetspeed.currentFragment is doing so I am going to skip that and move on. </p>
+<p><em>下一步我们到了<code>#set($rootFragment = $jetspeed.currentFragment)</code>这行，另一个<code>set()</code>声明，此时创建了一个名为<code>$rootFragment</code>的对象，它是一个<a href="http://portals.apache.org/jetspeed-2/apidocs/org/apache/jetspeed/om/page/ContentFragment.html" target="_blank" rel="external">org.apache.jetspeed.om.page.ContentFragment</a>的实例。本手册真的不是要描述<code>$jetspeed.currentFragment</code>要做什么，所以我要跳过这儿，并继续前行。</em></p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">set</span>(<span class="built_in">$site</span> = <span class="built_in">$request</span>.getAttribute(<span class="string">"org.apache.jetspeed.portalsite.PortalSiteRequestContext"</span>))</span><br><span class="line">#<span class="keyword">set</span>(<span class="built_in">$theme</span> = <span class="built_in">$request</span>.getAttribute(<span class="string">"org.apache.jetspeed.theme"</span>))</span><br></pre></td></tr></table></figure>
+<p>Ah $request, now that looks familiar, this is actually an instance of javax.servlet.http.HttpServletRequest from which we are retreiving objects that were been placed into Velocity by Jetspeed. The actual objects are: org.apache.jetspeed.portalsite.PortalSiteRequestContext and org.apache.jetspeed.decoration.Theme respectively. We will put all of these objects to good use in just a little while. </p>
+<p><em>啊<code>$request</code>，现在，看起来很熟悉，实际上这是个<code>javax.servlet.http.HttpServletRequest</code>实例，它来自被Jetspeed放到Velocity中的我们要检索的对象。实际的对象分别是：<a href="http://portals.apache.org/jetspeed-2/apidocs/org/apache/jetspeed/portalsite/PortalSiteRequestContext.html" target="_blank" rel="external">org.apache.jetspeed.portalsite.PortalSiteRequestContext</a>和<a href="http://portals.apache.org/jetspeed-2/apidocs/org/apache/jetspeed/decoration/Theme.html" target="_blank" rel="external">org.apache.jetspeed.decoration.Theme</a>。一会儿我们要好好利用所有的这些对象。</em></p>
+<h3 id="Feed-Your-HEAD-How-to-Properly-Code-Your-Head-Tag"><a href="#Feed-Your-HEAD-How-to-Properly-Code-Your-Head-Tag" class="headerlink" title="Feed Your HEAD: How to Properly Code Your Head Tag."></a>Feed Your HEAD: How to Properly Code Your Head Tag.</h3><p>This section provides you with all the information to properly code the <head> of your Layout decroation. So, straight to the code. </head></p>
+<p><em>这节给你的全部信息能使你正确地编写你的布局装饰器的<code>&lt;head&gt;</code>。那么，直接来看代码。</em></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">     #defineLayoutObjects()</span><br><span class="line">     </span><br><span class="line">     <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">"#BaseHref()"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-type"</span> <span class="attr">content</span>=<span class="string">"#ContentType()"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-style-type"</span> <span class="attr">content</span>=<span class="string">"text/css"</span> /&gt;</span>   </span><br><span class="line">     #includeJavaScriptForHead()</span><br><span class="line">     #IncludeStylesheets()    </span><br><span class="line">     <span class="tag">&lt;<span class="name">title</span>&gt;</span>#PageTitle()<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"#PageDescription()"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>The <base> Tag</p>
+<p><em><code>&lt;base&gt;</code>标签</em></p>
+<p>First off we have <base href="#BaseHref()"> which allows us to define the base path for resolution of web resources, for an in depth discussion of the <base> see: W3C Schools Reference. If you have spent any time playing with Jetspeed, you will have noticed it does all sorts of crazy URL rewriting that will totally hose any attempts to consistently path you html and styles sheets. By defining the BASE tag, this probelms will all but disappear. As for the #BaseHref() macro, it simply generates a fully qualified path to your web application’s root. The actual code, interms of the servlet api is synonimous with this: </p>
+<p><em>首先我们获得<code>&lt;base href=&quot;#BaseHref()&quot;&gt;</code>，允许我们定义解析web资源的基本路径，要深入讨论<code>&lt;base&gt;</code>，请看：<a href="http://www.w3schools.com/tags/tag_base.asp" target="_blank" rel="external">W3C Schools Reference</a>。如果你花时间来玩Jetspeed，你将会注意到它做了各种疯狂的URL重写，    试图用一致的路径全部连通你的页面和样式表。通过定义BASE标签，这个问题将不复存在。对于<code>#BaseHref()</code>宏，它只是生成了到你的web应用程序的根目录的完全限定的路径。实际的代码，根据servlet api等同于这样：</em>  </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request;</span><br><span class="line">StingBuffer baseHref = <span class="built_in">new</span> StringBuffer(request.getScheme())</span><br><span class="line">     .<span class="built_in">append</span>(<span class="string">"://"</span>).<span class="built_in">append</span>(request.getServerName())</span><br><span class="line">	 .<span class="built_in">append</span>(<span class="string">":"</span>).<span class="built_in">append</span>(request.getServerPort())</span><br><span class="line">	 .<span class="built_in">append</span>(request.getContextPath()).<span class="built_in">append</span>(<span class="string">"/"</span>);</span><br><span class="line"><span class="keyword">return</span> baseHref.toString();</span><br></pre></td></tr></table></figure>
+<p>The actual Velocity macro code is a bit more terse ;)<br><em>实际的Velocity宏代码更简洁。</em> ;) </p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;</span>request.scheme&#125;<span class="symbol">://</span><span class="variable">$&#123;</span>request.serverName&#125;<span class="symbol">:</span><span class="variable">$&#123;</span>request.serverPort&#125;<span class="variable">$&#123;</span>request.contextPath&#125;/</span><br></pre></td></tr></table></figure>
+<p>Meta Tag: <meta http-equiv="Content-type" content="#ContentType()"></p>
+<p>Will return text/html plus the proper encoding, such as UTF. </p>
+<p><em>将要返回<code>text/html</code>+适当的编码，比如UTF。</em></p>
+<p>#includeJavaScriptForHead()</p>
+<p>At the time of the writing of this guide there is really very little javascript required to for the base Jetspeed 2 server to run. However this may change in near future as we try to employ the use of AJAX in things such as configuration and administration. </p>
+<p><em>在写本手册的时候，真的很少有需要基于Jetspeed2服务运行的javascript。但是，在不久的将来这也许会发生变化，比如我们尝试使用AJAX去做像配置和管理这样的事情。</em></p>
+<h2 id="JSP-Decorators"><a href="#JSP-Decorators" class="headerlink" title="JSP Decorators"></a>JSP Decorators</h2><p>The JSP decorators are only currently supported in the tigris decorator. The JSP decorators are not enabled by default. JSP decorators can be enabled by modifying (properly commented) settings in:</p>
+<p><em>目前只有tigris装饰器支持使用JSP装饰器。JSP装饰器不是默认启用的。通过修改（恰当的注释）设置可以启用JSP装饰器：</em></p>
+<ul>
+<li>decorators/layout/tigris/decorator.properties</li>
+<li>decorators/portlet/tigris/decorator.properties</li>
+<li>WEB-INF/templates/layout/html/columns/layout.properties</li>
+<li>WEB-INF/templates/layout/html/maximized/layout.properties</li>
+<li>WEB-INF/templates/layout/html/solo/layout.properties</li>
+</ul>
+<p>Note: you need to change the settings in <em>all</em> of the above properties files, and then restart jetspeed. </p>
+<p><em>注意：你需要在上面所有的配置文件中都做修改，然后重启Jetspeed。</em></p>
+<p>Also note: for the tcolumns template there isn’t a JSP replacement (yet), but that isn’t much used anyway AFAIK. Just to be sure: don’t switch your page layout portlet(s) from columns to tcolumns, otherwise your page will be be broken. </p>
+<p><em>另外注意：尽管tcolumns模板不是一个JSP的替代品，但据我所知，它无论如何用到的都不多。可以肯定的是：不要将你的页面布局portlet从列转换到tcolumns，否则你的页面将会被破坏。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/Jetspeed-Decorators翻译/" data-id="cimrd26ko0000nwloq9ul2vrw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Jetspeed-PSML翻译" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/06/Jetspeed-PSML翻译/" class="article-date">
@@ -297,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimooh2u20004twloecs8gwxr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimrd26lx000lnwlo8x3dbjjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -406,7 +548,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cimooh2u30005twlonl7fdusp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cimrd26lg0009nwlodxmsra9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -592,7 +734,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cimooh2tt0000twlo9kidm98q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cimrd26lu000jnwlounv63rh2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -636,7 +778,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimooh2ul000rtwlozq815xkd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimrd26ls000inwlof604ka5c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
@@ -682,7 +824,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/test/" data-id="cimooh2ty0001twlo6hhiysy7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/test/" data-id="cimrd26lf0008nwlolj82egvy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
@@ -729,7 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/hello-world/" data-id="cimooh2u50007twlop4kq2857" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/hello-world/" data-id="cimrd26ld0007nwlogtgrtg56" class="article-share-link">Share</a>
       
       
     </footer>
@@ -748,7 +890,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -757,7 +899,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -775,7 +917,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -785,6 +927,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/07/Jetspeed-Decorators翻译/">Jetspeed官方手册-Decorators</a>
+          </li>
         
           <li>
             <a href="/2016/04/06/Jetspeed-PSML翻译/">Jetspeed官方手册-PSML</a>
@@ -800,10 +946,6 @@
         
           <li>
             <a href="/2016/03/29/桃花庵歌/">桃花庵歌</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/28/test/">这是一篇测试文章</a>
           </li>
         
       </ul>
