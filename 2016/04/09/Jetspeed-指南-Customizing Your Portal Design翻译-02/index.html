@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jetspeed官方指南-自定义你的门户设计-02 | 北斗的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetspeed官方指南-自定义你的门户设计-02">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/index.html">
+<meta property="og:site_name" content="北斗的博客">
+<meta property="og:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
+<meta property="og:image" content="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetspeed-page-decorator.png">
+<meta property="og:updated_time" content="2016-04-09T01:27:34.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jetspeed官方指南-自定义你的门户设计-02">
+<meta name="twitter:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
+<meta name="twitter:image" content="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetspeed-page-decorator.png">
+  
+    <link rel="alternative" href="/atom.xml" title="北斗的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!--link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"-->
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">北斗的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">积累</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon">菜单</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" class="article-date">
+  <time datetime="2016-04-09T01:08:32.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jetspeed官方指南-自定义你的门户设计-02
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://portals.apache.org/jetspeed-2/tutorial/02/page-decoration.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Page-Decorators"><a href="#Page-Decorators" class="headerlink" title="Page Decorators"></a>Page Decorators</h2><p>Each Jetspeed page can be associated with a different page decoration. Page decorations control some important aspect of a portal page: </p>
+<p><em>每个Jetspeed页都可以关联一个不同的页面装饰器。页面装饰器控制着门户页面中一些重要的外表：</em></p>
+<ul>
+<li>The colors, images, CSS styles that skin this page</li>
+<li>The header portion of the page</li>
+<li>The page margins</li>
+<li>The footer portion of the page</li>
+<li>Menus displayed on the page</li>
+<li><p>Action buttons displayed on the window</p>
+</li>
+<li><p><em>页面中的颜色，图片，样式</em></p>
+</li>
+<li><em>页面的头部位置</em></li>
+<li><em>页面轮廓</em></li>
+<li><em>页面的底部位置</em></li>
+<li><em>页面中菜单的显示</em></li>
+<li><em>窗口中活动按钮的显示</em></li>
+</ul>
+<p>Decorators do not control the placement of portlets. That is handled by layouts. Jetspeed comes with several page decorations out of the box. The default page decorator for most pages is simply called jetspeed. It looks like this: </p>
+<p><em>装饰器不能控制组件的位置。那是由布局来管理的。Jetspeed配备了几个开箱即用的几个页面装饰器。大多数页面的默认装饰器叫做jetspeed。它看起来像这样：</em></p>
+<p><img src="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetspeed-page-decorator.png" alt="jetspeed-page-decorator"></p>
+<p>We are going to create a new decorator for this tutorial. This new decorator can be copied into our project from the decorations/layout/jetexpress/ directory in tutorial-resources.zip. This will save you the trouble of creating all the logo images and CSS definitions. </p>
+<p><em>在本指南中，我们要创建一个新的装饰器。新的装饰器可以将<a href="http://portals.apache.org/jetspeed-2/tutorial/downloads/tutorial-resources.zip" target="_blank" rel="external">tutorial-resources.zip</a>压缩包里的<code>decorations/layout/jetexpress/</code>目录拷贝到我们的项目中。这将减少你创建所有的徽标图像和CSS定义的麻烦。</em></p>
+<p>In your project, under jetexpress-portal/src/main/webapp, create a directory decorations. Inside it, create a directory layout. From jetspeed-tutorial-resources.zip, copy the decorations/layout/jetexpress/ directory and all its files and subdirectories to jetexpress-portal/src/main/webapp/decorations/layout in your project. </p>
+<p><em>在你的项目中的<code>jetexpress-portal/src/main/webapp</code>目录下，创建一个<code>decorations</code>目录。在它里边，创建一个<code>layout</code>目录。从<code>jetspeed-tutorial-resources.zip</code>压缩包里，拷贝<code>decorations/layout/jetexpress/</code>目录的全部文件和子目录，到你项目的<code>jetexpress-portal/src/main/webapp/decorations/layout</code>中。</em></p>
+<h3 id="The-Header"><a href="#The-Header" class="headerlink" title="The Header"></a>The Header</h3><p>Open up the file decorations/layout/express-page/header.vm This is a Velocity template, very much like JSP but simpler, with no Java compilation required. Jetspeed does support JSP-based decorators. However no one has contributed one yet. We could spend a lot of time teaching you about all the macros available. But lets just concentrate on changing the logos first. </p>
+<p><em>打开<code>decorations/layout/express-page/header.vm</code>文件，这是个Velocity模板，非常像JSP，只是简单些，没有Java编译的要求。Jetspeed不支持基于JSP的装饰器。不过说来还没有人贡献一个。我们可以花许多时间来教你关于可用的所有宏。但首先让我们仅仅专注于改变徽标。</em></p>
+<p>Scroll down to the banner content (search for <div class="header">). Here we added our new left-hand side logo, consisting of a globe and the text ‘jetexpress’: </div></p>
+<p><em>滚动到横幅内容（搜索<code>&lt;div class=&quot;header&quot;&gt;</code>）。我们在这儿添加新的左手边的徽标，由一个地球仪和一个’jetexpress’组成：</em></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"#GetPageResource('images/earth.jpg')"</span> <span class="attribute">height</span>=<span class="string">"28"</span> width=<span class="string">"28"</span>/&gt;</span><br><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"#GetPageResource('images/jetexpress-logo.gif')"</span> <span class="attribute">height</span>=<span class="string">"28"</span> width=<span class="string">"131"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>#GetPageResource is a Velocity macro. It retrieves a resource (image, CSS, HTML) from the decoration folder, relative to the root of the jetexpress decoration folder. Besides the images, the header.vm is pretty much the same as the default Jetspeed decorator. In fact we simply copied the default decorator to get us started. This gives you a good start of customizing the page. </p>
+<p><em><code>#GetPageResource</code>是一个Velocity宏。它从相对于jetexpress装饰器文件夹的根目录里取回一个资源（图片，样式，页面）。除了图片，<code>header.vm</code>与默认的Jetspeed装饰器几乎相同。其实我们仅仅拷贝了默认的装饰器，以便让我们开始。这使你的自定义页面有一个良好的开端。</em></p>
+<h3 id="Velocity-Variables"><a href="#Velocity-Variables" class="headerlink" title="Velocity Variables"></a>Velocity Variables</h3><p>Velocity makes several variables about the context of a decoration available for dynamic substition of menus and content: </p>
+<p><em>Velocity使用了几个装饰器上下文可用的变量 ，以便可以动态替换菜单和内容：</em></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Desc</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$layoutDecoration</td>
+<td>Retrieve layout content from the decoration dir</td>
+<td>$layoutDecoration.getResource(“decorator-macros.vm”)</td>
+</tr>
+<tr>
+<td>$site</td>
+<td>Retrieve menus by name</td>
+<td>$site.getMenu(“pages”)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Menus"><a href="#Menus" class="headerlink" title="Menus"></a>Menus</h3><p>The remainder of header.vm is HTML markup mixed in with some important macros for displaying Jetspeed Menus. Jetspeed Menus are built from a collection of portal resources known as the Portal Site. The portal site is a content tree (like a file system) of portal resources. The site can be stored in the file system or in a database. Resources can be a page, folder, or link. Lets look at some of the available macros for displaying menus on your page. </p>
+<p><em><code>header.vm</code>其余部分是混入一些重要的宏，用于显示Jetspeed菜单的HTML标记。Jetspeed菜单是由一个名为门户站点的门户资源集合创建的。门户站点是一颗门户资源的内容树（类似文件系统）。站点可以存储在文件系统或数据库里。资源可以是一个页面，文件夹，或链接。让我们看一些可以在你页面中显示菜单的有用的宏。</em></p>
+<p>The $site always has the following menus available to you at any time: </p>
+<p><em><code>$site</code>在任何时候总是有可供你使用的下面的菜单：</em></p>
+<table>
+<thead>
+<tr>
+<th>Menu</th>
+<th>Desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pages</td>
+<td>relative pages menu of pages in the current folder. Used to define the page tabs above the portal. <br><br><em>（当前文件夹中页面的相对页面菜单。用来定义门户网站上面的页面选项卡。）</em></td>
+</tr>
+<tr>
+<td>breadcrumbs</td>
+<td>paths to page used to provide history links below the page tabs <br><br><em>（在页面选项卡的下面，用于提供页面历史链接的路径）</em></td>
+</tr>
+<tr>
+<td>navigations</td>
+<td>relative subfolders and root level links menu used to define the navigation pane beside the portal.<br><br><em>（相对子文件夹和根目录级别的链接菜单，用于定义门户旁边的导航面板）</em></td>
+</tr>
+<tr>
+<td>back</td>
+<td>parent folder menu used to define the single “back” link above the portal page tabs.<br><br><em>（父文件夹菜单，用于定义门户页面选项卡上方的单一“返回”链接）</em></td>
+</tr>
+</tbody>
+</table>
+<p>You can also define your own menus (not covered in this tutorial). </p>
+<p><em>你还可以定义自己的菜单（在本指南中不涉及）。</em></p>
+<p>There are some helper macros for creating different styles of menus. The macros are defined in the decorator-macros.vm file: </p>
+<p><em>这有些用于创建不同样式菜单的有用的宏。宏定义在<code>decorator-macros.vm</code>文件中：</em></p>
+<table>
+<thead>
+<tr>
+<th>Macro</th>
+<th>Decription</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#includeTabsNavigation($someMenu $LEFT_TO_RIGHT)</td>
+<td>Displays a menu in a vertical tabbed navigation style.</td>
+</tr>
+<tr>
+<td>#includeLinksNavigation($breadCrumb $LEFT_TO_RIGHT “” $BREADCRUMBS_STYLE “”)</td>
+<td>Displays a menu of links according to a given style.</td>
+</tr>
+<tr>
+<td>#includeNestedLinksWithIconNavigation($standardNavs $TOP_TO_BOTTOM)</td>
+<td>Displays a nested top-to-bottom menu navigation of folders, links, and pages.</td>
+</tr>
+<tr>
+<td>#PageActionBar()</td>
+<td>Not a menu, but the available actions (edit, view, help, print…) for this page</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see in header.vm, we get $site.getMenu(“navigations”) and display a nested top-to-bottom menu navigation through the #includeLinksWithIconNavigation macro: </p>
+<p><em>正如你可以看到<code>header.vm</code>，通过<code>#includeLinksWithIconNavigation</code>宏，我们得到<code>$site.getMenu(&quot;navigations&quot;)</code>，显示了一个嵌套的由上到下的菜单导航：</em></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Left Navigations Menu Table Data --&gt;</span></span><br><span class="line">#set($navigationsStandardMenu = $site.getMenu("navigations"))</span><br><span class="line"></span><br><span class="line">#if(!$navigationsStandardMenu.empty)</span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">valign</span>=<span class="string">"top"</span> <span class="attr">id</span>=<span class="string">"leftcol"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"navcolumn"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span> <span class="attr">cellspacing</span>=<span class="string">"4"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"100%"</span>&gt;</span></span><br><span class="line">            #includeLinksWithIconNavigation($navigationsStandardMenu $TOP_TO_BOTTOM)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
+<h3 id="The-Footer"><a href="#The-Footer" class="headerlink" title="The Footer"></a>The Footer</h3><p>Open up decorations/layout/jetexpress/footer.vm. Here you can see the “Powered by Jetspeed” logo displayed in the page footer: </p>
+<p><em>打开<code>decorations/layout/jetexpress/footer.vm</code>文件。在这儿你可以看到在页面底部显示的“Powered by Jetspeed”徽标。</em></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"#GetPageResource('images/Jetspeed_blue_sm.png')"</span> alt=<span class="string">"Jetspeed 2 Powered"</span> <span class="attribute">border</span>=<span class="string">"0"</span> /&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" data-id="cimsgq7zs000anolodbjm7m2v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jetspeed官方指南-自定义你的门户设计-01</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jetspeed/" style="font-size: 20px;">Jetspeed</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/">Jetspeed官方指南-自定义你的门户设计-02</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/">Jetspeed官方指南-自定义你的门户设计-01</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/Jetspeed-Decorators翻译/">Jetspeed官方手册-Decorators</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/Jetspeed-PSML翻译/">Jetspeed官方手册-PSML</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/Jetspeed-Template翻译/">Jetspeed官方手册-Template</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 bigdipper<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
