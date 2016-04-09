@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Jetspeed官方指南-自定义你的门户设计-01 | 北斗的博客</title>
+  <title>Jetspeed官方指南-自定义你的门户设计-05 | 北斗的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jetspeed官方指南-自定义你的门户设计-01">
-<meta property="og:url" content="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/index.html">
+<meta property="og:title" content="Jetspeed官方指南-自定义你的门户设计-05">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/index.html">
 <meta property="og:site_name" content="北斗的博客">
 <meta property="og:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
-<meta property="og:updated_time" content="2016-04-08T07:53:27.349Z">
+<meta property="og:image" content="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetexpress-portal.png">
+<meta property="og:updated_time" content="2016-04-09T07:46:12.446Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jetspeed官方指南-自定义你的门户设计-01">
+<meta name="twitter:title" content="Jetspeed官方指南-自定义你的门户设计-05">
 <meta name="twitter:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
+<meta name="twitter:image" content="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetexpress-portal.png">
   
     <link rel="alternative" href="/atom.xml" title="北斗的博客" type="application/atom+xml">
   
@@ -64,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-01" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-05" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" class="article-date">
-  <time datetime="2016-04-08T07:53:32.000Z" itemprop="datePublished">2016-04-08</time>
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/" class="article-date">
+  <time datetime="2016-04-09T07:45:35.000Z" itemprop="datePublished">2016-04-09</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Jetspeed官方指南-自定义你的门户设计-01
+      Jetspeed官方指南-自定义你的门户设计-05
     </h1>
   
 
@@ -90,28 +92,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://portals.apache.org/jetspeed-2/tutorial/02/customizing-overview.html" target="_blank" rel="external">原文地址</a></p>
-<h2 id="Decorator-and-Theme-Customization"><a href="#Decorator-and-Theme-Customization" class="headerlink" title="Decorator and Theme Customization"></a>Decorator and Theme Customization</h2><p>Now that your custom Jetspeed portal is up and running, let’s start customizing the portal design. The portal design, or skins, are known in Jetspeed as decorators and themes. With decorators and themes, you can customize the portal experience to the branding of your organization. In this tutorial, we will simply change a few images, CSS styles and colors to get you on your way. </p>
-<p><em>现在你的Jetspeed自定义门户已经<a href="http://portals.apache.org/jetspeed-2/tutorial/01/run-it.html" target="_blank" rel="external">启动并运行了</a>，那么我们开始自定义门户的设计。门户设计，或者说是皮肤，在Jetspeed中被称为装饰器和主题。用装饰器和主题，你可以自定义门户体验到你机构的品牌化。在本指南中，我们将简单地改变一些图片，样式和颜色，以使你走向成功。</em></p>
-<p>It is important to note that all of the changes made in this section are made in the build environment. The changes we are making here could just as easily be made using the portal’s live customization features. For example, you can drop a decorator or theme into the portal while its running. Jetspeed will pick it up automatically. Or, to customize a page, you can use the portlet customizer or desktop customizer, portlet selector, and site manager: all administrative portlets that work on your live portal. However, the point of configuring everything in a Maven build is to be able to easily reproduce portal environments for development, testing, and new deployments. </p>
-<p><em>注意到重要的一点是：在这一章节中所做的全部改变都是在生成环境中进行的。我们在这里所做的更改，使用门户的活动自定义功能也一样可以轻易实现。比如，你可以在门户运行时，往里拖进一个装饰器或主题。Jetspeed将自动检出它来。或者，要自定义一个页面，你可以使用组件定制器或桌面定制器，组件选择器，以及站点管理：在你的活动门户里工作的全部管理类组件。然而，在Maven构建中配置一切，能够轻松重现为开发，测试和部署的门户环境。</em></p>
-<p>This section of the tutorial covers customizing: </p>
-<p><em>本指南的这个章节包含的自定义有：</em></p>
-<ul>
-<li>Portal Skins (or Decorators). We replace the default logo, colors, and page header and footers with our own.</li>
-<li>Portal Themes. Same as Portal Skins, but themes apply to the Jetspeed Desktop.</li>
-<li><p>Configuring the default portal page to use these new decorators and themes</p>
-</li>
-<li><p><em>门户皮肤（或装饰器）。我们将默认的logo，颜色，页面头部和底部替换成我们自己的。</em></p>
-</li>
-<li><em>门户主题。与门户皮肤一样，但主题同样适用于 Jetspeed 桌面。</em></li>
-<li><em>配置默认的门户页来使用新的装饰器和主题。</em></li>
-</ul>
+        <p><a href="http://portals.apache.org/jetspeed-2/tutorial/02/deploy-custom.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Deploying-Decorations-Themes-and-Pages"><a href="#Deploying-Decorations-Themes-and-Pages" class="headerlink" title="Deploying Decorations, Themes and Pages"></a>Deploying Decorations, Themes and Pages</h2><p>In the previous step you configured the default page to use your new decorators. In this step we redeploy the portal so we can admire the result.</p>
+<p><em>在上一章节中，<a href="http://portals.apache.org/jetspeed-2/tutorial/02/default-page.html" target="_blank" rel="external">你将默认页面配置成使用新的装饰器</a>。在这个章节，我们重新部署门户，以便我们可以欣赏到结果。</em></p>
+<p>Stop the Tomcat process by pressing Ctrl + C in the command line window where you started it. </p>
+<p><em>在你开始前，在命令行中用<code>Ctrl + C</code>组合键停止Tomcat进程。</em></p>
+<p>In your jetexpress project directory, run the following command to redeploy the portal in Tomcat: </p>
+<p><em>在你的jetexpress项目目录中，运行下面的命令，在Tomcat中重新部署门户：</em></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dtarget<span class="symbol">=deploy</span>-portal</span><br></pre></td></tr></table></figure>
+<p>To restart the portal, go to the bin directory of your Tomcat installation. </p>
+<p><em>重启门户，进入安装好的Tomcat的bin目录中。</em></p>
+<p>If you are using a Unix system, run: </p>
+<p><em>如果你是使用Unix系统，运行：</em></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./catalina.<span class="keyword">sh</span> <span class="keyword">run</span></span><br></pre></td></tr></table></figure>
+<p>If you are using a Windows system, run: </p>
+<p><em>如果你是使用Window系统，运行：</em></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catalina<span class="selector-class">.bat</span> run</span><br></pre></td></tr></table></figure>
+<p>Refresh the portal home page, <a href="http://localhost:8080/jetexpress/portal" target="_blank" rel="external">http://localhost:8080/jetexpress/portal</a>. You should now see a portal with our new custom decorators: </p>
+<p><em>刷新门户首页，<a href="http://localhost:8080/jetexpress/portal。你现在应该能看到使用了我们新的自定义装饰器的门户了：" target="_blank" rel="external">http://localhost:8080/jetexpress/portal。你现在应该能看到使用了我们新的自定义装饰器的门户了：</a></em></p>
+<p><img src="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetexpress-portal.png" alt="jetexpress-portal"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" data-id="cimsua0ve000drslod0r42799" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/" data-id="cimsua0vn000irslowta5dr0m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -122,19 +126,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Jetspeed官方指南-自定义你的门户设计-02
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/07/Jetspeed-Decorators翻译/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Jetspeed官方手册-Decorators</div>
+      <div class="article-nav-title">Jetspeed官方指南-自定义你的门户设计-04</div>
     </a>
   
 </nav>
