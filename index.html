@@ -65,6 +65,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/" class="article-date">
+  <time datetime="2016-04-09T02:06:33.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/">Jetspeed官方指南-自定义你的门户设计-03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://portals.apache.org/jetspeed-2/tutorial/02/portlet-decoration.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Portlet-Decorators"><a href="#Portlet-Decorators" class="headerlink" title="Portlet Decorators"></a>Portlet Decorators</h2><p>In the previous step we covered decorating page elements such as the page header and footer, and the menus. In this step we look at decorating individual portlets. </p>
+<p><em>在上一节我们覆盖了<a href="http://portals.apache.org/jetspeed-2/tutorial/02/page-decoration.html" target="_blank" rel="external">装饰页面元素</a>，如页面头部和底部，以及菜单。在这一节我们来看一下装饰单独的组件。</em></p>
+<p>Each Jetspeed portlet window on a page can be associated with a different portlet decoration. Portlet decorations control some important aspects of a portlet window: </p>
+<p><em>页面上的每个Jetspeed组件窗口都可以关联一个不同的组件装饰器。组件装饰器控制着组件窗口一些重要的特征：</em></p>
+<ul>
+<li>The colors, images, CSS styles that skin this window</li>
+<li>The title portion of the portlet</li>
+<li>The borders of the window</li>
+<li><p>Action buttons displayed on the window</p>
+</li>
+<li><p><em>窗口皮肤的颜色，图片，样式</em></p>
+</li>
+<li><em>组件的标题位置</em></li>
+<li><em>窗口的边框</em></li>
+<li><em>窗口的活动按钮显示</em></li>
+</ul>
+<p>Jetspeed comes with several portlet decorations out of the box. The default page decorator for most pages is simply called jetspeed. It looks like this: </p>
+<p><em>Jetspeed带了几个开箱即用的组件装饰器。大多数页面的默认装饰器名叫jetspeed。它看起来像这样：</em></p>
+<p><img src="http://portals.apache.org/jetspeed-2/tutorial/images/02/jetspeed-portlet.png" alt="jetspeed-portlet"></p>
+<p>We are going to create a new decorator for this tutorial. This new decorator can be copied into our project from the decorations/portlet/jetexpress/ directory in tutorial-resources.zip. This will save you the trouble of creating all the logo images and CSS definitions. </p>
+<p><em>我们要为本指南创建一个新的装饰器。新的装饰器可以拷贝<a href="http://portals.apache.org/jetspeed-2/tutorial/downloads/tutorial-resources.zip" target="_blank" rel="external">tutorial-resources.zip</a>压缩包中的<code>decorations/portlet/jetexpress/</code>目录拷贝到我们的项目中。这将减少你创建所有的徽标图像和CSS定义的麻烦。</em></p>
+<p>In your project, under jetexpress-portal/src/main/webapp/decorations, create a directory portlet. From jetspeed-tutorial-resources.zip, copy the decorations/portlet/jetexpress/ directory and all its files and subdirectories to jetexpress-portal/src/main/webapp/decorations/portlet in your project. </p>
+<p><em>在你的项目中的<code>jetexpress-portal/src/main/webapp/decorations</code>目录下，创建一个<code>portlet</code>目录。从<code>jetspeed-tutorial-resources.zip</code>压缩包里，拷贝<code>decorations/portlet/jetexpress/</code>目录的全部文件和子目录，到你项目的<code>jetexpress-portal/src/main/webapp/decorations/portlet</code>中。</em></p>
+<p>We are going to skip over the intricate details of portlet decorators, as page decorators are much more important, as they set your organization’s branding. Whereas the standard window decorators are good enough for getting you started. Go ahead and review the content of our custom portlet decorator. You will see that the directory layout is the same as for page decorators. The decorator simply creates a new color variation on an existing window decorator. </p>
+<p><em>我们将跳过组件装饰器的复杂细节，与页面装饰器更重要的是，它们设置了你机构的品牌化。而标准窗口装饰已足够让你开始。继续，检查我们的自定义组件装饰器。你将看到它的目录布局和页面装饰器一样。这个装饰器在现有的窗口装饰器上仅仅创建了一个可用的新颜色。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/" data-id="cimsi4g4v000dw8lo8nx941v9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" class="article-date">
@@ -216,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" data-id="cimsgq7zs000anolodbjm7m2v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" data-id="cimsi4g4q0007w8loag1s9d9u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -275,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" data-id="cimsgq7zl0005nolo4cto68zh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" data-id="cimsi4g4t000aw8lonxnp5t1y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -417,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Jetspeed-Decorators翻译/" data-id="cimsgq7z30000nolooexkhiov" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Jetspeed-Decorators翻译/" data-id="cimsi4g4e0000w8lohkb8ajni" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -661,7 +729,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimsgq7zk0004noloblmrcyws" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimsi4g4n0004w8lovwho5iop" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -770,7 +838,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cimsgq7zt000dnolo86nabels" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cimsi4g4o0005w8lol92m6h7n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -956,7 +1024,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cimsgq7z80001noloftgr5ayw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cimsi4g4i0001w8lozva1fxu5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -1000,7 +1068,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimsgq80h0017nolor2rrz3bv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimsi4g51000gw8lo09x7wu7h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
@@ -1046,7 +1114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/28/test/" data-id="cimsgq7zy000gnolo54swouf2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/28/test/" data-id="cimsi4g59000iw8lozkw575ff" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
@@ -1093,7 +1161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/23/hello-world/" data-id="cimsgq7zn0007nolo73rxjn01" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/23/hello-world/" data-id="cimsi4g5z001hw8lotf2umb0d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1112,7 +1180,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -1121,7 +1189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1139,7 +1207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1149,6 +1217,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/">Jetspeed官方指南-自定义你的门户设计-03</a>
+          </li>
         
           <li>
             <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/">Jetspeed官方指南-自定义你的门户设计-02</a>
@@ -1164,10 +1236,6 @@
         
           <li>
             <a href="/2016/04/06/Jetspeed-PSML翻译/">Jetspeed官方手册-PSML</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/06/Jetspeed-Template翻译/">Jetspeed官方手册-Template</a>
           </li>
         
       </ul>
