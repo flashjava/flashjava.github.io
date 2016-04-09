@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>桃花庵歌 | 北斗的博客</title>
+  <title>Jetspeed官方指南-自定义你的门户设计-04 | 北斗的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="明代唐寅的桃花庵歌。">
+  <meta name="description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="桃花庵歌">
-<meta property="og:url" content="http://yoursite.com/2016/03/29/桃花庵歌/index.html">
+<meta property="og:title" content="Jetspeed官方指南-自定义你的门户设计-04">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/index.html">
 <meta property="og:site_name" content="北斗的博客">
-<meta property="og:description" content="明代唐寅的桃花庵歌。">
-<meta property="og:updated_time" content="2016-03-29T08:47:45.700Z">
+<meta property="og:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
+<meta property="og:updated_time" content="2016-04-09T02:16:39.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="桃花庵歌">
-<meta name="twitter:description" content="明代唐寅的桃花庵歌。">
+<meta name="twitter:title" content="Jetspeed官方指南-自定义你的门户设计-04">
+<meta name="twitter:description" content="翻译Jetspeed的Customizing Your Portal Design文档。">
   
     <link rel="alternative" href="/atom.xml" title="北斗的博客" type="application/atom+xml">
   
@@ -64,14 +64,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-桃花庵歌" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/29/桃花庵歌/" class="article-date">
-  <time datetime="2016-03-29T08:44:00.000Z" itemprop="datePublished">2016-03-29</time>
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/" class="article-date">
+  <time datetime="2016-04-09T02:16:34.000Z" itemprop="datePublished">2016-04-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/测试/">测试</a>
+    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      桃花庵歌
+      Jetspeed官方指南-自定义你的门户设计-04
     </h1>
   
 
@@ -90,16 +90,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>桃花庵歌<br>朝代：明代<br>作者：唐寅<br>原文：<br>桃花坞里桃花庵，桃花庵下桃花仙。<br>桃花仙人种桃树，又折花枝当酒钱。<br>酒醒只在花前坐，酒醉还须花下眠。<br>花前花后日复日，酒醉酒醒年复年。<br>不愿鞠躬车马前，但愿老死花酒间。<br>车尘马足贵者趣，酒盏花枝贫者缘。<br>若将富贵比贫贱，一在平地一在天。<br>若将贫贱比车马，他得驱驰我得闲。<br>世人笑我太疯癫，我笑世人看不穿。<br>记得五陵豪杰墓，无酒无花锄作田。</p>
-<p>土匪国里土匪党，土匪党下土匪帮；<br>土匪党帮串豪富，又杀平民夺产田<br>人前高叫是公仆，背后尽把财色贪；<br>半败半腐日复日，贪财贪色年复年<br>但愿老死权贵间，不愿鞠躬屁民前；<br>天上人间权者趣，海天盛筵富者缘<br>若将民主比专政，一在平地一在天；<br>若将专政比垄断，它占资源又弄权<br>别人笑我太疯癫，我笑他人看不穿；<br>舔菊五毛遍地是，无数脑残评论员<br>还有成批奴才狗，砖家叫兽扎堆骗；<br>寡廉鲜耻当高尚，贱卖灵魂辱祖先！</p>
+        <p><a href="http://portals.apache.org/jetspeed-2/tutorial/02/default-page.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="Modifying-the-Default-Page"><a href="#Modifying-the-Default-Page" class="headerlink" title="Modifying the Default Page"></a>Modifying the Default Page</h2><p>Now that we have created our decorators, lets put them to use as the default decorators for the portal. Open jetexpress-portal/src/main/webapp/WEB-INF/pages/folder.metadata. Edit the defaults element, replacing ‘jetspeed’ with ‘jetexpress for both layout-decorator and portlet-decorators: </p>
+<p><em>现在我们来创建自己的装饰器，使它们成为门户的默认装饰器。打开<code>jetexpress-portal/src/main/webapp/WEB-INF/pages/folder.metadata</code>文件。编辑默认属性，将全部的布局装饰器和组件装饰器从<code>jetspeed</code>替换成<code>jetexpress</code>：</em></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defaults</span> <span class="attr">layout-decorator</span>=<span class="string">"jetexpress"</span></span><br><span class="line">            <span class="attr">portlet-decorator</span>=<span class="string">"jetexpress"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Go ahead and save that file.</p>
+<p><em>继续，保存此文件。</em></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cimsihgrc001hmwlo9222cgnu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/" data-id="cimsihgqr000imwlo5pom6h2c" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
 
     </footer>
   </div>
@@ -107,19 +111,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/01/Jetspeed-Layouts翻译/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Jetspeed官方手册-Layouts
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/28/test/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">这是一篇测试文章</div>
+      <div class="article-nav-title">Jetspeed官方指南-自定义你的门户设计-03</div>
     </a>
   
 </nav>
