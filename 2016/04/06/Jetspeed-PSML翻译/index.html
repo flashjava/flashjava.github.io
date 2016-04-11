@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/index.html">
 <meta property="og:site_name" content="北斗的博客">
 <meta property="og:description" content="翻译Jetspeed的PSML文档。">
-<meta property="og:updated_time" content="2016-04-06T09:52:31.571Z">
+<meta property="og:updated_time" content="2016-04-11T06:10:21.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetspeed官方手册-PSML">
 <meta name="twitter:description" content="翻译Jetspeed的PSML文档。">
@@ -92,8 +92,8 @@
       
         <p><a href="http://portals.apache.org/jetspeed-2/devguide/guide-psml.html" target="_blank" rel="external">原文地址</a><br><a href="http://blog.csdn.net/peterwanghao/article/details/667890" target="_blank" rel="external">网上已有的翻译</a></p>
 <h2 id="PSML"><a href="#PSML" class="headerlink" title="PSML"></a>PSML</h2><ul>
-<li>Page<ul>
-<li>Layout Fragments</li>
+<li><a href="#Page">Page</a><ul>
+<li><a href="#Layout-Fragments">Layout Fragments</a></li>
 <li>Portlet Fragments</li>
 <li>Fragment References</li>
 <li>Fragment Properties</li>
@@ -193,9 +193,68 @@
 <p>Here is an example PSML file for the portal site page security, (page.security): </p>
 <p><em>这是一个门户站点页面安全的PSML文件示例，(page.security)：</em></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">page-security</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- global admin constraints --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">security-constraints-def</span> <span class="attr">name</span>=<span class="string">"admin"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">roles</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">roles</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">permissions</span>&gt;</span>view, edit<span class="tag">&lt;/<span class="name">permissions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">security-constraints-def</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">global-security-constraints-ref</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">global-security-constraints-ref</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- public constraints --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">security-constraints-def</span> <span class="attr">name</span>=<span class="string">"public-view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">users</span>&gt;</span>*<span class="tag">&lt;/<span class="name">users</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">permissions</span>&gt;</span>view<span class="tag">&lt;/<span class="name">permissions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">security-constraints-def</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">security-constraints-def</span> <span class="attr">name</span>=<span class="string">"public-edit"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">users</span>&gt;</span>*<span class="tag">&lt;/<span class="name">users</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">permissions</span>&gt;</span>view, edit<span class="tag">&lt;/<span class="name">permissions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">security-constraints-def</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">page-security</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><blockquote>
-<p>未翻译</p>
-</blockquote>
+<h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><p>The <page> element is a simple container to hold other PSML elements associated with a portal site page. This element is persisted as a file with a ‘.psml’ extension in the appropriate file system directory associated with the parent folder. There are two valid attributes for the page element: </page></p>
+<p><em><code>&lt;page&gt;</code>元素是一个简单的容器，它保存了一个门户站点页面中其他PSML元素之间的关联。这个元素一直定义在以.pmsl为扩展名的文件中，此文件存放在与父文件夹相关的适当文件目录中。它有两个有效属性：</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hidden</td>
+<td>A boolean attribute used to indicate that a page should not appear in portal site menus or other navigational elements.<br><br><em>（布尔属性，用于说明此页面是否应当在门户站点菜单或其他导航元素中显示。）</em></td>
+</tr>
+<tr>
+<td>version</td>
+<td>A general purpose version tracking attribute. Not currently used by Jetspeed2.<br><br><em>（一个通用版本跟踪的属性。目前在jetspeed2中并不使用。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>The <page> element contains a number of other PSML elements: </page></p>
+<p><em><code>&lt;page&gt;</code>元素包含一些其他的PSML元素：</em></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title?</td>
+<td>Simple element containing text for the default page title. The title of the page is considered its long description and is used as rollover text in some decorators if the short title is available for the menu text. If not specified, Jetspeed2 will attempt to define a title from the name of the file that contains the page element. <br><br><em>（用简单的元素包含默认页面标题的文字。考虑到页面标题是个长描述，如果一些装饰器的菜单文本可获得短标题，那么它可用于反转文本。如果没有指定，Jetspeed2将尝试用包含此页面元素的文件名称定义标题。）</em></td>
+</tr>
+<tr>
+<td>short-title?</td>
+<td>Optional simple element containing text of the default short title for the page. The short title, if available, is used as menu text in some decorators. If not specified, the title text is used.<br><br><em>（设置简单的元素来包含页面的默认短标题文字。如果可获取短标题，就在一些装饰器的菜单文本中使用。如果没有指定，就使用标题文字。）</em></td>
+</tr>
+<tr>
+<td>defaults?</td>
+<td>Specifies the decorations for the page and its fragments. Optional defaults can be inherited from parent folders, but layout decorations are required for each page either specified explicitly or in a parent folder.<br><br><em>（指定页面装饰器和它的片段。设置默认从父文件夹继承，但是每个页面所需的布局装饰器要么显示地指定，要么位于父文件夹中。）</em></td>
+</tr>
+<tr>
+<td>fragment</td>
+<td>The root of the fragment hierarchy. All pages require a root Fragment.<br><br><em>（片段的根级别。所有的页面都需要一个根片段。）</em></td>
+</tr>
+<tr>
+<td>metadata*</td>
+<td>Optionally specifies locale specific titles and short titles for the page.<br><br><em>（可选项，指定区域设置页面的标题和短标题。）</em></td>
+</tr>
+<tr>
+<td>menu*</td>
+<td>Optionally specifies additional or overrides inherited menu definitions for the page.<br><br><em>（可选项，指定附加或重写继承的页面菜单定义。）</em></td>
+</tr>
+<tr>
+<td>security-constraints?</td>
+<td>Optionally defines inline security constraints for the page. If not specified, the page inherits the security constraints effective in the parent folder.<br><br><em>（可选项，定义页面的行内安全约束。如果不指定，页面继承父文件夹中有效的安全约束。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>Example: see intoductory examples above.</p>
+<p><em>示例：<a href="#PSML">看上面例子介绍</a>。</em></p>
 <h2 id="Layout-Fragments"><a href="#Layout-Fragments" class="headerlink" title="Layout Fragments"></a>Layout Fragments</h2><p>The page layout <fragment> element is a hierarchical container used to hold portlet fragments and nested layout fragments. The root fragment of a page must be a layout fragment, even when only one portlet fragment is part of the page. Layout fragments are subject to layout of the parent layout fragment and thus support the ‘row’ and ‘column’ layout properties. In addition, they also support the ‘sizes’ layout property used to control multicolumn layout proportions. There are 3 required attributes for this element: </fragment></p>
 <p><em>页面布局<code>&lt;fragment&gt;</code>元素是一个分层容器，用于持有portlet片段和嵌套的布局片段。页面的根片段必须是一个布局片段，即使页面只是由一个portlet片段组成。布局片段依赖于父布局片段，因此支持<code>row</code>和<code>column</code>布局特性。另外，它们还支持<code>sizes</code>布局特性，用来控制多列布局特性。它有3个必须的属性：</em></p>
 <table>
@@ -296,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimsua0v50004rslotvieb7gy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cimvlpe8h0007fsloixgkhal7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
