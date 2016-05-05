@@ -65,6 +65,398 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Jetspeed-JetUI翻译" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/05/Jetspeed-JetUI翻译/" class="article-date">
+  <time datetime="2016-05-05T02:40:21.000Z" itemprop="datePublished">2016-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/Jetspeed/">Jetspeed</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/Jetspeed-JetUI翻译/">Jetspeed-JetUI翻译</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://portals.apache.org/jetspeed-2/deployguide/guide-jetui.html" target="_blank" rel="external">原文地址</a></p>
+<h1 id="Introduction-to-JetUI"><a href="#Introduction-to-JetUI" class="headerlink" title="Introduction to JetUI"></a>Introduction to JetUI</h1><p>Jetspeed version 2.2.1 introduces JetUI rendering engine. JetUI is a replacement for the now deprecated and removed Jetspeed Desktop pipeline. JetUI is primary concerned with advanced portal customization and rendering features. With JetUI, we have not abandoned pure server-side rendering. Jetspeed will still fully support classic server side rendering of portal pages. With version 2.2.1, two rendering engines are made available to you directly from the installer: </p>
+<p><strong>Jetspeed 2.2.1版本介绍了JetUI渲染引擎。JetUI是现在已弃用和删除的Jetspeed Desktop管道的替代品。JetUI主要涉及高级门户定制和呈现功能。尽管有了JetUI，我们也没有放弃纯服务器端的呈现。Jetspeed将仍然完全支持经典的门户页面服务器端呈现。在2.2.1版本中，在安装时直接提供给你两个呈现引擎：</strong></p>
+<ol>
+<li>The Classic (Portal Page) rendering engine</li>
+<li>The JetUI Rendering engine</li>
+</ol>
+<p><strong> 1. 经典（门户页面）呈现引擎</strong><br><strong> 2. JetUI呈现引擎</strong></p>
+<p>In this document, we introduce the many new features of JetUI…</p>
+<p><strong>在本文档中，我们介绍了很多JetUI的新功能…</strong></p>
+<ul>
+<li><a href="#Jetspeed-Spaces">Jetspeed Spaces</a>, secured areas of the portal site for workgroups and projects</li>
+<li><a href="#The-Space-Navigator">The Space Navigator</a>, to quickly navigate to spaces</li>
+<li>JetUI uses a simpler algorithm to <a href="#Mapping-URLs">map URLs</a> directly to spaces and pages, it does not use the profiler</li>
+<li><a href="#Drag-and-Drop-of-portlets">Drag and Drop of portlets</a></li>
+<li><a href="#Docking-toolbars">Docking toolbars</a></li>
+<li><a href="#Detaching-and-Closing-portlets">Detaching and Closing portlets</a></li>
+<li><a href="#Resizing-of-portlets">Resizing of portlets</a></li>
+<li><a href="#The-Jetspeed-Toolbox">The Jetspeed Toolbox</a>, a dockable portlet selector, layout selector, and theme selector</li>
+<li><a href="#Jetspeed-Page-Navigator">Jetspeed Navigator</a> to navigate over spaces, maintenance over pages, folders, links</li>
+<li><a href="#Preview-Portlet-Mode">Preview Portlet Mode</a> from Jetspeed Toolbox</li>
+<li><a href="#Cloning-Portlets">Portlet Cloning</a> from Jetspeed Toolbox</li>
+<li>JAX RS Services for Portal Customization and Registry manipulations built into JetUI</li>
+<li>Integration with Page and Dynamic templates</li>
+<li><a href="#Extensions-to-PSML">Extensions to PSML to support JetUI constructs</a></li>
+<li><a href="#Jetspeed-Properties-Configurations">Jetspeed Properties Configurations</a></li>
+<li><a href="#JetUI-Pipeline-Configurations">Pipeline Configurations</a></li>
+</ul>
+<ul>
+<li><strong>Jetspeed空间，工作区和项目在门户站点的安全区域</strong></li>
+<li><strong>空间导航，更快速地导航到空间</strong></li>
+<li><strong>JetUI使用一个简单的算法，把链接直接映射到空间和页面，它不使用分析器</strong></li>
+<li><strong>拖拽组件</strong></li>
+<li><strong>停靠工具条</strong></li>
+<li><strong>分离和关闭组件</strong></li>
+<li><strong>调整组件尺寸</strong></li>
+<li><strong>Jetspeed工具箱，可停靠组件选择器，布局选择器，主题选择器</strong></li>
+<li><strong>Jetspeed导航，空间导航，维护页面，文件夹，链接</strong></li>
+<li><strong>通过Jetspeed工具箱预览组件模型</strong></li>
+<li><strong>通过Jetspeed工具箱克隆组件</strong></li>
+<li><strong>JetUI内置门户定制和注册处理的JAX RS服务</strong></li>
+<li><strong>与页面和动态模板集成</strong></li>
+<li><strong>扩展PSML，支持JetUI构造</strong></li>
+<li><strong>Jetspeed特性配置</strong></li>
+<li><strong>管道配置</strong><br>As of version 2.3.0 of Jetspeed, there are some limitations to what JetUI can currently do: </li>
+</ul>
+<p><strong>在Jetspeed 2.3.0版本中，有一些JetUI使用的限制：</strong></p>
+<ul>
+<li>no support for customization of nested layouts</li>
+<li>only four themes supported (one column, two column, three column, four column)</li>
+<li>no support for advanced templating (DPSML, TPSML) customization</li>
+<li>JetUI does not work with the Jetspeed Profiler. JetUI does not support subsites. Instead of subsites, use the Spaces features.</li>
+</ul>
+<ul>
+<li><strong>不支持自定义的嵌套布局</strong></li>
+<li><strong>只支持四个主题：一列、两列、三列、四列</strong></li>
+<li><strong>不支持高级模板的定制</strong></li>
+<li><strong>JetUI不能和Jetspeed分析器一起工作。JetUI不支持子站点。代替子站点，要使用空间功能。</strong></li>
+</ul>
+<h2 id="Switching-on-JetUI"><a href="#Switching-on-JetUI" class="headerlink" title="Switching on JetUI"></a>Switching on JetUI</h2><p>There are a few options for turning on the JetUI rendering and customization engine. The first option is to install Jetspeed using our packaged installer The installer will ask you if you would like to install the JetUI or Classic portal pipeline. You cannot run both at once. The default is JetUI. </p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/installer.png" alt="installer"></p>
+<p>The second option is to build Jetspeed using the Custom Builder. The Build Guide is a bit long winded and has a lot of information about Maven internals. Here are a few commands distilled to help you get past all that… </p>
+<p>List all build commands available to from the custom builder:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dlist</span><br></pre></td></tr></table></figure>
+<p>Build and deploy the entire JetUI-enabled portal demo with several portlet apps and deploy it to Tomcat</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dtarget<span class="symbol">=ui</span></span><br></pre></td></tr></table></figure>
+<p>Build and deploy the JetUI-enabled minimal with only j2-admin portlet app and deploy it to Tomcat</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dtarget<span class="symbol">=min</span>-ui</span><br></pre></td></tr></table></figure>
+<p>Variants of the two options above, with DBPSMLL-enabled</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dtarget<span class="symbol">=ui</span>-dbpsml</span><br><span class="line"><span class="keyword">mvn </span>jetspeed:<span class="keyword">mvn </span>-Dtarget<span class="symbol">=min</span>-ui-dbpsml</span><br></pre></td></tr></table></figure>
+<p>The third option is to manually switch to using the JetUI portal on a deployed installation of Jetspeed. Editing the WEB-INF/conf/jetspeed.properties (or WEB-INF/conf/override.properties), you can manually switch from Classic mode to JetUI mode and back by setting the jetui.customization.method to Classic: server; or JetUI: ajax. </p>
+<p><strong>第三种设置是在部署安装完成的Jetspeed上手动切换到使用JetUI门户。编辑<code>WEB-INF/conf/jetspeed.properties</code>（或者<code>WEB-INF/conf/override.properties</code>），你可以手动从经典模式切换到JetUI模式，通过设置<code>jetui.customization.method</code>为<code>server</code>返回经典模式，或者<code>ajax</code>返回JetUI模式。</strong></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jetui.customization.<span class="keyword">method</span>=ajax</span><br></pre></td></tr></table></figure>
+<p>Additionally, you can set the default pipeline, although it is not necessary if you directly hit the JetUI pipeline by addressing all URLs with /jetspeed/ui instead of /jetspeed/portal </p>
+<p><strong>此外，你可以设置默认的管道，尽管它不是必须的，如果你通过对所有的包含<code>/jetspeed/ui</code>，而不包含<code>/jetspeed/portal</code>的链接寻址，直接敲击JetUI管道。</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipeline<span class="selector-class">.default</span> = jetui-pipeline</span><br></pre></td></tr></table></figure>
+<p>Finally, if you would like for /jetspeed/portal to go to the JetUI pipeline, change the pipelines.xml pipeline-map bean to: </p>
+<p><strong>最终，如果你想要<code>/jetspeed/portal</code>使用JetUI管道，在<code>pipelines.xml</code>文档中改变<code>pipeline-map bean</code>：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">'/portal'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>jetui-pipeline<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Jetspeed-Spaces"><a href="#Jetspeed-Spaces" class="headerlink" title="Jetspeed Spaces"></a>Jetspeed Spaces</h2><p>If you will be deploying a JetUI site, it is important to understand how spaces are configured. A space is a top level organization of the Jetspeed site. You can use spaces to organize or group projects or teams into a common area. Spaces have a lot in common with folders, and they support all folder functionality and metadata. Just like folders, Spaces can have specific security constraints on them. There are two administrative tools available for managing Spaces: the Space Manager and the Space Navigator. The Space Manager allows you to maintain spaces, for example if you want to add or modify a space, use the Space Manager. </p>
+<p><strong>如果你将要部署一个JetUI站点，理解如何配置空间是重要的。空间是Jetspeed站点的顶级组织结构。你可以使用空间将项目或团队分配到一个共同的区域，来组织或分组。空间有很多公共的文件夹，它们支持全部的文件夹功能和元数据。就像文件夹一样，空间可以有对它们的特定的安全约束。有两个管理工具可用于管理空间：<a href="http://portals.apache.org/jetspeed-2/adminguide/space-manager.html" target="_blank" rel="external">空间管理器</a>和空间导航器。空间管理器允许你维护空间，例如如果你想添加或修改一个空间，使用空间管理器。</strong></p>
+<p>Configuring a Space With a two exceptions, Spaces can only be top level folders. You can configure your spaces by editing the folder.metadata file of any space. In a folder.metadata file of any top level directory, you can make that folder a space by adding the space-owner metadata property: </p>
+<p><strong>配置空间有两个例外，空间只能是顶级文件夹。你可以通过编辑空间的<code>folder.metadata</code>文档来配置你的空间。在任何顶级目录中的<code>folder.metadata</code>文档里，你可以通过添加<code>space-owner</code>元数据特性，使文件夹成为空间：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">metadata</span> <span class="attr">name</span>=<span class="string">'space-owner'</span> <span class="attr">xml:lang</span>=<span class="string">'en'</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">metadata</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Once you have added this single property, the folder will be promoted from a normal folder to a space. You can also use the Space Manager to create spaces. There are two other kinds of Spaces: </p>
+<p><strong>一旦你添加了这个单一特性，此文件夹将从普通文件夹升级成一个空间。你还可以使用空间管理器来创建空间。有两种其他类型的空间：</strong></p>
+<ul>
+<li>The default or Public Space</li>
+<li>User Spaces, every user gets their own space</li>
+</ul>
+<ul>
+<li><strong>默认或公共空间</strong></li>
+<li><strong>用户空间，每个用户获得他们自己的空间</strong></li>
+</ul>
+<p>The Public Space is really the root directory of the Jetspeed site. It has a security constraint of public-view, meaning that only the administrator can edit it, and that all other users can view the public space. The Public Space is important in that you can set metadata here that is inherited by all other spaces and folders in the system. For example, you can set the theme or default security policy for the entire site in the folder.metadata file in the root Public Space. Of course Spaces can override these settings. </p>
+<p><strong>公共空间是Jetspeed站点真正的根目录。它有一个<code>public-view</code>的安全约束，这意味着只能由管理员来编辑它，其他的用户可以查看公共空间。公共空间是重要的，你可以在此设置元数据，以便系统的其他空间和文件夹继承。例如，你可以在根公共空间的<code>folder.metadata</code>文档中设置整站的主题或默认的安全策略。当然，空间能重写这些设置。</strong></p>
+<p>Every user gets their own space. User spaces are located in the /_user/{username} folders. The username is usually set as the space-owner in the space-owner metadata tag. </p>
+<p><strong>每个用户都有自己的空间。空间位于<code>/_user/{username}</code>文件夹。用户名通常当做<code>space-owner</code>元数据标签的值。</strong></p>
+<p>When a new user is added to the system, Jetspeed will create a Home space for that user, and copy in the contents of a template folder as the default home space for that user. You can configure the new user template in the /_template/new-user folder. Here you will find a folder.metadata file, along with several other page files which are all copied into a new user home space when that user is created. The space-owner metadata tag is added automatically to the folder-metadata by Jetspeed. Additionally, certain regular expression rules are used to build the menus fro the Jetspeed Page Navigator. The regex below is the default, and it tells the Page Navigator to show menus for pages and folders in the current directory, as well as all links in the home space of the user. </p>
+<p><strong>当一个新用户被添加到系统中时，Jetspeed将为此用户创建一个<code>Home space</code>，并拷贝过来一个模板文件夹内容，做为该用户<code>home space</code>的默认值。你可以在<code>/_template/new-user</code>文件夹中配置新的用户模板。在此，你将找到一个<code>folder.metadata</code>文件，以及几个其他的页面文件，当用户被创建时，它们全部被拷贝到新用户的<code>home space</code>中。<code>space-owner</code>元数据标签由Jetspeed自动添加到<code>folder-metadata</code>。另外，某些正则表达式规则用于生成Jetspeed页面导航菜单。下面的正则表达式是默认值，它告诉页面导航器显示页面菜单和当前目录下的文件夹，以及用户的<code>home space</code>下的所有链接。</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">menu</span> name=<span class="string">"space-navigations"</span> regexp=<span class="string">"true"</span> options=<span class="string">"+/*/,+/*.psml"</span> depth=<span class="string">"-1"</span>/&gt;</span><br><span class="line">&lt;<span class="selector-tag">menu</span> name=<span class="string">"space-links"</span> regexp=<span class="string">"true"</span> options=<span class="string">"+/*.link"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>There is also a template that is used for when new spaces are created. This template is found under /_template/space. Here you can configure which default pages, links and security constraints are applied when creating a new space. Feel free to modify the files, or add more pages in the user and space templates found in /_template for your systems. </p>
+<p><strong>这里还有一个模板，用于在创建新空间时使用。这个模板可以在<code>/_template/space</code>下找到。在这儿你可以配置默认页面，链接，和安全约束，当创建一个新空间时，它们就能起作用。随时修改文件，或添加更多的页面到用户和空间模板，都可以在你的系统的<code>/_template</code>里找到。</strong></p>
+<h3 id="Future-Directions-Spaces"><a href="#Future-Directions-Spaces" class="headerlink" title="Future Directions - Spaces"></a>Future Directions - Spaces</h3><p>Spaces also support an additional organization of content called Environments. Environments are a collection of spaces. JetUI does not currently support environment administration. Spaces were introduced to Jetspeed with version 2.2.1, along with JetUI. Future versions of Jetspeed will support full domain mappings to spaces. Domain mapping will enable use cases like white label portals, where different URLs map to different Spaces or Environments. In an upcoming release, Jetspeed will support multi-domain security. This means you can setup a domain of users, and associate those users with a domain and set of Spaces. </p>
+<p><strong>空间还支持称作环境的一个额外的组织内容。环境是空间的集合。JetUI目前不支持环境管理。空间是在Jetspeed 2.2.1版本，连同JetUI一起引入的。Jetspeed将来的版本将支持完整的域映射到空间。域映射将启用像白色标签门户的用例，在那儿不同的链接映射到不同的空间或环境。在即将到来的版本中，Jetspeed将支持多域安全。这意味着，你可以设置一个域用户，把域里的用户与空间设置关联起来。</strong></p>
+<h2 id="The-Space-Navigator"><a href="#The-Space-Navigator" class="headerlink" title="The Space Navigator"></a>The Space Navigator</h2><p>The Space Navigator is a special navigational portlet giving users quick access to spaces. From the Space Navigator, you can navigate to any space in the system where you have secure access to view that space. Additionally, from the Space Navigator, the Admin can Edit the current space, as well as create a new space. The Space Navigator is implemented using two new features introduced with JetUI: page templates and detached portlets. In order for the Space Navigator to appear on every page in the system, we have configured the Space Navigator in the root folder in the page template named template.tpsml. Since this portlet definition is in the system wide page template, it will automatically appear on every page in the system, allowing your users to always have access to space navigation. </p>
+<p><strong>空间导航器是一个特殊的导航组件，它使用户可以快速访问空间。由空间导航器，你可以导航到系统中你有安全访问权限的任何空间。另外，通过空间导航器，管理员既可以编辑当前空间，还可以创建一个新空间。JetUI使用了两个新功能：页面模板和分离组件来实现了空间导航器。为了使空间导航器显示到系统的每个页面，我们要在根文件夹下的，名为<code>template.tpsml</code>的页面模板中进行空间导航器的设置。由于这个组件定义在系统宽页面模板中，它将自动显示到系统的每个页面，允许你的用户总是能访问到空间导航器。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"jsSpaceNavigator"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::SpaceNavigator"</span> decorator='clear'&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"y"</span> value=<span class="string">"300"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"x"</span> value=<span class="string">"20"</span>&gt;&lt;/<span class="keyword">property</span>&gt;            </span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<p>Additionally, the Space Navigator is a detached portlet. JetUI introduced a new special property to fragments named state. We set this property to the value detach. If a portlet is detached, it is not limited to the flow layout control of most portal pages. Instead it can be placed at a specific area on the page. See the x and y properties, which are used to locate the portlet at a specific location in the page header area. Detached portlets can also be dragged and moved around. However, we do not want the portlet to be moved, so we use a clear decorator, meaning the portlet has no title bar. Since JetUI drags and drops portlets by the title bar, if we use a clear decorator, the portlet cannot be moved. </p>
+<p><strong>另外，空间导航器是一个分离的组件。JetUI介绍了一个新片段特性，称为<code>state</code>。我们设置此特性的值为<code>detach</code>。如果组件是分离的，它在大多数流布局控制的门户页面中不会受到限制。相反，它可以放在页面的特定区域。看<code>x</code>和<code>y</code>特性，它们用于定位这个组件到页面头部区域的一个指定位置。分离组件也可以拖拽和移动。然而，我们不希望它被移动，所以我们使用了<code>clear</code>装饰器，这意味着，该组件没有标题条。由于JetUI是通过标题条来拖拽组件的，如果我们使用了<code>clear</code>装饰器，该组件就不能被移动。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/space-navigator.png" alt="space-navigator"></p>
+<h2 id="Mapping-URLs"><a href="#Mapping-URLs" class="headerlink" title="Mapping URLs"></a>Mapping URLs</h2><p>In Classic Jetspeed, URLs are mapped using the Jetspeed Profiler. The Profiler uses a powerful set of rules to locate a page, based on runtime parameters such as language, country code or media type. While the profiler is powerful, it is also complicated to configure. JetUI simplifies URL mapping by having not using the profiler. This means that a URLs map directly to the logical folder or page in the Jetspeed site. JetUI does not support subsites, since subsites are driven by profile rules. </p>
+<p><strong>经典的Jetspeed，是使用Jetspeed分析器进行链接映射的。分析器使用一个强大的规则设置来定位页面，基于运行时的参数像语言，国家代码或媒体类型。由于分析器很强大，它的配置也相应的复杂。JetUI通过不使用分析器，从而简化了链接映射。这意味着，链接直接映射到Jetspeed站点的逻辑文件夹或页面。JetUI不支持子站点，因为子站点是由分析器规则驱动的。</strong></p>
+<h2 id="Drag-and-Drop-of-portlets"><a href="#Drag-and-Drop-of-portlets" class="headerlink" title="Drag and Drop of portlets"></a>Drag and Drop of portlets</h2><p>Portlets can be moved around the page by clicking on their title bar, holding the mouse down, and dragging the portlet to another location on the page. By default, you can only drag portlets by their title bar. There are two modes of drag and drop: </p>
+<p><strong>组件可以通过点击它们的标题条来移动，按下鼠标，拖动组件到页面的另一个位置。默认情况下，你只能拖动组件的工具条。拖拽有两种模式：</strong></p>
+<ul>
+<li>Flow Control Drag and Drop</li>
+<li><p>Z-Order Drag and Drop</p>
+</li>
+<li><p><strong>流控制拖拽</strong></p>
+</li>
+<li><strong>Z轴顺序拖拽</strong></li>
+</ul>
+<p>With flow control drag and drop, portlets will always stay in rows and columns. If you drag over another portlet, that portlet will be shifted out of the way in order to make space for the dragged portlet to be placed. Z-Order drag and drop is only available when a portlet is detached. Where ever you drag the portlet to and drop it, that is where the portlet stays. The dragged portlet can actually overlap other portlets. The last dragged portlet gets the highest z-order, meaning that it will stay on top of all other portlets, until a new portlet is selected (by clicking on its title bar) or moved. By default, all portlets use flow control. You can press the detach button on a portlet title bar to detach the portlet and put it in z-order drag and drop mode. Likewise, pressing the attach action will put the portlet back in flow control drag and drop mode. </p>
+<p><strong>流控制拖拽模式下，组件将始终停留在行和列里。如果你拖动覆盖了另一个组件，那个组件将向旁边平移，目的是使被拖动的组件能有位置被放置。Z轴顺序拖拽只有在组件是分离型的才能用。你把它拖拽到哪儿，它就停在哪儿。被拖动的组件其实可以和其他组件重叠。最后拖动的组件在Z轴顺序的最高点，那就是说，它将停在其他组件的上边，直到新的组件被选中（通过点击它的标题条）或移动。默认情况下，全部组件都使用流控制。你可以按下组件标题条上的分离按钮，来分离组件，并遵循Z轴顺序拖拽模式。同样的，点击附着活动，将把组件放回到流控制拖拽模式。</strong></p>
+<p>There is a CSS style configured in jetspeed.properties to indicate which div of a portal is the draggable part. This property is jetui.style.drag.handle which defaults to the decorator style named .PTitle</p>
+<p><strong>在<code>jetspeed.properties</code>中有一个CSS样式配置来指明组件的哪个div可以成为被拖动的部分。此特性是<code>jetui.style.drag.handle</code>,它的默认值是名为<code>.PTitle</code>的装饰样式。</strong></p>
+<h2 id="Docking-toolbars"><a href="#Docking-toolbars" class="headerlink" title="Docking toolbars"></a>Docking toolbars</h2><p>JetUI supports two toolbars, one docked on the left-side, and one docked on the right-side of the page. These toolbars are optional, but out of the box they are configured to be enabled. In the demo distribution of JetUI, we have placed the toolbars in the system wide page template, template.tpsml, meaning that all pages will by default display the toolbars. You can easily configure the page template to not have toolbars, or only have one toolbar, by editing the template.tpsml file and removing the two fragment definitions. The fragment definitions must use a special fragment id by convention. For the left toolbar, the fragment id must be jstbLeft. For the right toolbar, the fragment id must be jstbRight. If these fragments are not found on a page, the toolbar will not be displayed. </p>
+<p><strong>JetUI支持两个工具条，一个停靠在页面左边，一个停靠在右边。这些工具条是可选的，但是开箱即用就将它们配置成启用。在演示分发的JetUI中，我们把这俩工具条放在了系统宽页面模板中，<code>template.tpsml</code>，这也就是说，全部页面将默认显示这俩工具条。你可以编辑<code>template.tpsml</code>文件，删除这两个片段定义，轻松地把页面模板配置成不显示工具条，或只显示一个。片段定义必须使用一个符合约定的片段id。左边的工具条，片段id必须是<code>jstbLeft</code>。右边的工具条，片段id必须是<code>jstbRight</code>。如果页面上没有找到这些片段，那么工具条将不会显示。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"jstbLeft"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityOneColumn"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='toolbar' value='<span class="literal">true</span>'&gt;&lt;/<span class="keyword">property</span>&gt;                                </span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='<span class="built_in">class</span>' value='jsLeftToolbar'&gt;&lt;/<span class="keyword">property</span>&gt;                                </span><br><span class="line">    &lt;fragment <span class="built_in">id</span>=<span class="string">"jsPageNavigator"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::PageNavigator"</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"tool"</span> value=<span class="string">"true"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">    &lt;/fragment&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<p>Notice that there are special properties for a toolbar. A toolbar is a layout. It requires a special property to denote that it is a toolbar. This property is aptly named toolbar and is set to true. A toolbar fragment has a location on the page specified by row and column properties. It also has a state property, which can be either normal or closed. There are arrow buttons at the top of the toolbar, which allows you to hide or open the toolbar. This state is persisted per user in the state property of the fragment. When the toolbar is open, the state is normal, when closed, the state is closed. Finally, a toolbar has a CSS class which is used to format the layout. The layout is a single column containing one portlet, the Page Navigator, which is flagged as a tool. Tools can not be drop targets when using flow control drag and drop. In this case there is only one portlet in the toolbar. Of course more than one portlet could be placed in the toolbar. </p>
+<p><strong>注意，工具条中具有特殊的特性。工具条是个布局。它需要一个特殊的特性来标识出它是个工具条。此特性有个适当的名字<code>toolbar</code>，并把它设置为true。工具条片段通过<code>row</code>和<code>column</code>特性，在页面上指定了定位。它还有一个<code>state</code>特性，它的值不是<code>normal</code>就是<code>closed</code>。在工具条的顶部还有箭头按钮，它们允许你隐藏或打开工具条。每个用户在此片段的状态都保存在<code>state</code>特性中。当工具条打开是，<code>state</code>的值是<code>normal</code>，当关闭时，<code>state</code>的值是<code>close</code>。最后，工具条有一个用于格式化布局的css类。布局是包含了一个组件的单列，页面导航器，它标记为作为一个工具。当使用流控制模式拖拽时，工具不能成为拖动的目标。在这个例子中，工具条里只有一个组件。当然了，工具条中可以放不止一个组件。</strong></p>
+<p>Here is the definition for the right toolbar, which holds the Jetspeed Toolbox</p>
+<p><strong>这是右侧工具条的定义，它持有Jetspeed工具箱。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"jstbRight"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityOneColumn"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"2"</span>&gt;&lt;/<span class="keyword">property</span>&gt;    </span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                                </span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='toolbar' value='<span class="literal">true</span>'&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"guest"</span> value=<span class="string">"closed"</span>&gt;&lt;/<span class="keyword">property</span>&gt;	    </span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='<span class="built_in">class</span>' value='jsRightToolbar'&gt;&lt;/<span class="keyword">property</span>&gt;                                </span><br><span class="line">    &lt;fragment <span class="built_in">id</span>=<span class="string">"jsToolbox"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::JetspeedToolbox"</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"tool"</span> value=<span class="string">"true"</span>&gt;&lt;/<span class="keyword">property</span>&gt;	                                    </span><br><span class="line">    &lt;/fragment&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/nav-toolbar.png" alt="nav-toolbar"><br><img src="http://portals.apache.org/jetspeed-2/deployguide/images/toolbox-toolbar.png" alt="toolbox-toolbar"></p>
+<h2 id="Detaching-and-Closing-portlets"><a href="#Detaching-and-Closing-portlets" class="headerlink" title="Detaching and Closing portlets"></a>Detaching and Closing portlets</h2><p>JetUI introduces a three new portlet window actions: detach, attach and close. Actually detach and attach are toggles, a portlet is either detached or attached, it can never be both. A close up look at the portlet title bar shows the two new action icons, the X is the close button, which will remove the portlet from the page. The button to its right, with the arrow hooking to the left, is the detach button. Once a portlet is detached, the detach button becomes an re-attach button, the one with the arrow hooking to the right Detaching a portlet puts the portlet in Z-Order drag and drop mode, meaning it always tries to stay on top of all other portlets. By pressing the attach button, the portlet is put back into the nearest slot in a column, going back to flow control drag and drop and rendering. The detached state is stored on the fragment, and the state can be on a per user basis. Here we see both the row, column and x,y properties set on this fragment. The row and column or only relevant for an attached portlet being rendering in flow control mode. The x,y properties are only relevant when the portlet is detached. Also notice the state of this fragment is detach. Additionally, there is a new attribute on properties named scope. Below you can see the x,y values are scoped for a user, with the scopeValue set to the username admin. Each user can have their portlet positioning customized to their settings. As you can see, the XML can get quite large with many users. It is therefore recommended to always store PSML in the database with JetUI. </p>
+<p><strong>JetUI介绍了三个新的组件活动窗口：分离，附加和关闭。事实上，分离和附加是相互切换，组件要么是分离，要么是附加，它永远不能两个都占。近距离地看看组件标题条，显示了两个新的活动图标，<code>X</code>是关闭按钮，它将从页面中移除此组件。它右边的按钮，有左钩的箭头，是分离按钮。<img src="http://portals.apache.org/jetspeed-2/deployguide/images/close-detach.png" alt="左钩的箭头">一旦组件被分离了，分离按钮就变成了重新附件按钮，它是个右钩的箭头。<img src="http://portals.apache.org/jetspeed-2/deployguide/images/close-attach.png" alt="右钩的箭头">分离组件到Z轴拖拽模式，意味着，它总是试图停留在其他组件的顶部。通过按附加按钮，组件就放回到列里最近的插槽中，回到了流控制拖拽并呈现。分离的状态储存在片段上，并且此状态成为每个用户的基准。在此我们看到了在片段中设置的行，列，x，y特性。行和列只与在流控制模式下呈现的附加组件相关。x，y特性只与分离组件相关。也要注意到，片段的状态是分离。另外，在特性上有一个新的名为<code>scope</code>的属性。在下面你可以看到x，y值的作用范围是<code>user</code>，<code>scopeValue</code>设置的用户名是<code>admin</code>。每个用户可以自定义设置他们的组件定位。正如你所看到的，XML可以很大，有很多用户。因此推荐始终用JetUI在数据库中存储PSML文件。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"dp-22"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::ForgottenPasswordPortlet"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"1"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"x"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"536.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"y"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"88.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"width"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"1121.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"height"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"120.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"4"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<p>Here is a screen shot of a bunch of portlets all detached. As you can see, it is like a desktop. All portlets get can get focus when clicked on, going to the top of the rendering order for the page. </p>
+<p><strong>这是一个全部都是分离状态的组件群的屏幕截图。正如你看到的，它就像个桌面。当点击的时候，所有的组件都能获取焦点，并按页面的顺序呈选在顶部。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/detached.png" alt="detached"></p>
+<h2 id="Resizing-of-portlets"><a href="#Resizing-of-portlets" class="headerlink" title="Resizing of portlets"></a>Resizing of portlets</h2><p>Only detached portlets can be resized. Resizing is rather easy to do. Simply grab the portlet by the bottom right hand corner, where you will see a gradient icon, and drag it away to make it bigger, or in towards itself to make the portlet window smaller. If a portlet is attached, the gradient will not be visible. When a portlet is resized, two new attributes are stored with the fragment, height and width. This is how Jetspeed stores the width and height of a resized portlet. Notice how the height and witdth properties are store with a user scope, and for the scopeValue the name of the user is stored as dave. Each user can have their portlet window sizes customized to their settings. As you can see, the XML can get quite large with many users. It is therefore recommended to always store PSML in the database with JetUI. </p>
+<p><strong>只有分离组件可以调整大小。调整大小操作是相当简单的。只要抓住组件的右下角，在那儿你将看到一个梯度图标，然后拖拽它将它变大，或者朝着它自己，是这个组件窗口更小。<img src="http://portals.apache.org/jetspeed-2/deployguide/images/resize.png" alt="梯度图标">如果这是个附加组件，这个梯度图标将不可见。当组件被调整了大小，片段会存储两个新的属性，高和宽。这就是Jetspeed如何存储一个组件调整大小后的宽和高。注意，存储的高和宽是有用户作用域的，存储的作用域的值保存的是用户的名称。每个用户可以自定义设置他们自己的组件窗口大小。正如你所看到的，XML可以很大，有很多用户。因此推荐始终用JetUI在数据库中存储PSML文件。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"dp-22"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::ForgottenPasswordPortlet"</span>&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"width"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"dave"</span> value=<span class="string">"1121.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"height"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"dave"</span> value=<span class="string">"120.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"dave"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="The-Jetspeed-Toolbox"><a href="#The-Jetspeed-Toolbox" class="headerlink" title="The Jetspeed Toolbox"></a>The Jetspeed Toolbox</h2><p>The Jetspeed Toolbox is a dockable portlet, designed to make user customizations very easy in just one click. The toolbox can be docked to the left or right side of the page, or it can float freely on top of the page. The toolbox contains three panels giving you quick access to adding portlets, changing layouts, or changing themes: </p>
+<p><strong>Jetspeed工具箱是一个停靠组件，设计用于只需点击一下，就可以非常简单地进行用户自定义。工具箱可以停靠在页面的左边或右边，或者它可以自由浮动在页面的顶部。工具箱包含三个面板，使用能快速访问到添加组件，改变布局，或改变主题：</strong></p>
+<ul>
+<li>Portlet Selector</li>
+<li>Layouts</li>
+<li>Themes</li>
+</ul>
+<ul>
+<li><strong>组件选择器</strong></li>
+<li><strong>布局</strong></li>
+<li><strong>主题</strong></li>
+</ul>
+<h3 id="Portlet-Selector"><a href="#Portlet-Selector" class="headerlink" title="Portlet Selector"></a>Portlet Selector</h3><p>The Portlet Selector is the first tab. This new feature gives you fast access to page customization by allowing you to search for portlets by keyword or category, and then add the portlets to your page with one click. The first feature you will see is the search capability of the toolbox. You can type in a search string, and the portlet selector will return a list of portlets matching your search criteria. The search is on fully-indexed portlet metadata, like keywords and titles, over all automatically indexed content in the portlet registry. The search index is Lucene, and the Solr enterprise search engine is also supported. </p>
+<p><strong>组件选择器是第一个选项卡。这个新功能使你快速访问到将通过关键字或分类搜索到的组件，通过点击添加进来的这样的自定义页面。你将看到的第一个功能是工具箱的搜索功能。你可以键入搜索字符串，然后组件选择器将会返回一个匹配你搜索条件的组件列表。搜索是完全索引组件元数据，比如关键字和标题，遍历自动索引的注册组件内容。搜索索引是<code>Lucene</code>，同时也支持<code>Solr企业搜索引擎</code>。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/toolbox.png" alt="toolbox"></p>
+<p>Additionally, portlets can be categorized and filtered based on categories (see the drop down list). One click addition of portlets is now possible without ever leaving the page being customized. Portlets are also filtered by secure access. Only portlets that are configured to be viewable to the current user are displayed in the Jetspeed Toolbox. </p>
+<p><strong>另外，组件可以被分类或基于分类的过滤（见下拉列表）。现在可能甚至不用离开自定义的页面，来一键添加组件。组件也会被安全访问过滤，只有被配置成对当前用户可见的组件才会在Jetspeed工具箱中显示。</strong></p>
+<p>Categories are configured in either the j2-admin portlet.xml deployment descriptor, or with the Portlet Application Manager as shown below. Remember when adding a new category, to give it a new category name prefixed by Keywords:, and then add all the keywords relevant to the category in a comma separated list in the corresponding Value field. When the search engine searches over portlet content, it will match the keywords to the search results. The preference named Categories is also important, dont forget to add your category name to this comma-separated list or your Category will not show up. Finally, the number of rows of portlets displayed in the portlet selector is controlled by the Rows preference. Ignore the Columns preference. There is also a DefaultCategory preference, which is the initial category displayed in the portlet selector.</p>
+<p><strong>分类被配置成要么在<code>j2-admin</code>项目的<code>portlet.xml</code>文档中部署描述，要么在组件应用管理中显示，如下所示。记住，当添加新分类时，新分类名称的前缀使用<code>Keywords:</code>，然后在<code>value</code>字段中添加与分类有关的，以逗号分隔的关键字列表。当搜索引擎搜索过组件内容时，它将会匹配关键字到搜索结果。名为<code>Categories</code>的偏好也是重要的，别忘了添加你的分类名称到逗号分隔列表，否则你的分类将不会出现。最后，在组件选择器中显示的组件行数是由行偏好控制的。忽略列偏好。还有一个默认分类偏好，它是组件选择器的初始化分类显示。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/category-prefs.png" alt="category-prefs"></p>
+<h3 id="Theme-Selector"><a href="#Theme-Selector" class="headerlink" title="Theme Selector"></a>Theme Selector</h3><p>Selecting the theme for the current page is as easy as selecting the theme tab and then clicking on the theme. Jetspeed introduces several new themes in 2.2.1. Themes are still implemented as page decorators, with a few extensions made in the page decorator decorator.properties. You can find the page decorators in the Jetspeed webapp, under decorations/layout directory. There are currently for layouts supporting JetUI: Green Earth, Jetspeed, Purple Planet, and Turbo. In order for a decorator to appear in the theme selector, you will need to add two properties to the decorator.properties file. </p>
+<p><strong>给当前页选择主题就是选择主题选项卡，然后点击主题一样容易。Jetspeed在2.2.1版本中介绍了几个新主题。在页面装饰器的<code>decorator.properties</code>文档中添加几个扩展，主题也就支持作为页面装饰器。你可以在Jetspeed的webapp里，<code>decorations/layout</code>目录下找到页面装饰器。当前有几个支持JetUI的布局：<code>Green Earth</code>，<code>Jetspeed</code>，<code>Purple Planet</code>，和<code>Turbo</code>。为了使装饰器在主题选择器中显示，你需要在<code>decorator.properties</code>文档中添加两个特性。</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">icon</span> = images/greenearth.png</span><br><span class="line"><span class="attr">compatibility</span>=<span class="number">2.2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>The compatibility setting tells JetUI which version this decorator is compatible. In order to be used with JetUI, the value of the compatibility property must be 2.2.1 or higher. The icon property is used in the Toolbox to provide a visual of the colors that will be used in the theme. The file should be placed in the decorations/layout/{decoratorName}/images directory. </p>
+<p><strong><code>compatibility</code>设置是告诉JetUI，此装饰器兼容哪个版本。为了使用JetUI，<code>compatibility</code>特性的值必须是2.2.1或更高。<code>icon</code>特性用于在工具箱中提供将要在主题中使用的可视化的颜色。这个图片文件应当位于<code>decorations/layout/{decoratorName}/images</code>目录中。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/theme.png" alt="theme"></p>
+<h3 id="Layout-Selector"><a href="#Layout-Selector" class="headerlink" title="Layout Selector"></a>Layout Selector</h3><p>Page layouts, selected from the Layout tab, allow the end user the ability to customize the layout of a page with one click. There are four supporte layouts: OneColumn, TwoColumn, ThreeColumn, and FourColumn. The layouts in JetUI are currently limited to these four choices. We hope to improve on that in the new future. The images you see are stored under the Jetspeed webapp in the layouts directory. </p>
+<p><strong>页面布局，从布局选项卡中选取，允许最终用户通过点击来自定义页面布局的能力。有四个支持的布局：<code>OneColumn</code>，<code>TwoColumn</code>，<code>ThreeColumn</code>，和<code>FourColumn</code>。JetUI中的布局是目前仅限于这些四个选择。我们希望在将来会有改善。你看到的图片存储在Jetspeed的webapp下的<code>layouts</code>目录中。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/layout.png" alt="layout"></p>
+<h2 id="Preview-Portlet-Mode"><a href="#Preview-Portlet-Mode" class="headerlink" title="Preview Portlet Mode"></a>Preview Portlet Mode</h2><p>The Portlet Selector supports previewing portlets, in case you don’t want to place the portlet on the page before first having a look at it. There are two ways for a portlet to support previewing. First, the portlet can provide an image of the portlet, and tell Jetspeed about it in the jetspeed-portlet.xml deployment descriptor of the portlet app Enter a js:metadata for the given portlet, with the name attribute set to portlet.preview.image where the image path is a portlet application relative path to a preview image. </p>
+<p><strong>组件选择器支持预览组件，因为你不想在看一眼这个组件之前，就把它放置到页面上。让组件支持预览有两种办法。第一种，组件提供一个图片，在<code>jetspeed-portlet.xml</code>文档的组件应用程序部署描述符中，给此组件录入<code>js:metadata</code>标签，并且它的<code>name</code>属性设置为<code>portlet.preview.image</code>，图片路径是组件应用的相对路径 以此来告诉Jetspeed在哪里预览。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">portlet</span> <span class="attr">id</span>=<span class="string">"WeatherPortlet"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">portlet-name</span>&gt;</span>WeatherPortlet<span class="tag">&lt;/<span class="name">portlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">js:metadata</span> <span class="attr">name</span>=<span class="string">"portlet.preview.image"</span>&gt;</span>/images/preview/weatherportlet.png<span class="tag">&lt;/<span class="name">js:metadata</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">portlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">portlet</span> <span class="attr">id</span>=<span class="string">"GoogleMapsPortlet"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">portlet-name</span>&gt;</span>GoogleMapsPortlet<span class="tag">&lt;/<span class="name">portlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">js:metadata</span> <span class="attr">name</span>=<span class="string">"portlet.preview.image"</span>&gt;</span>/images/preview/googlemapsportlet.png<span class="tag">&lt;/<span class="name">js:metadata</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">portlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Portlets can also implement an extended Custom Preview Mode. This requires actually coding in the portlet, as well as the following deployment elements in the portlet.xml on a portlet definition:</p>
+<p><strong>组件还可以实现扩展的自定义预览模式。这实际上就要求在组件中编码，就跟定义组件时在<code>portlet.xml</code>文档中部署元素一样：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">supports</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mime-type</span>&gt;</span>text/html<span class="tag">&lt;/<span class="name">mime-type</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">      <span class="tag">&lt;<span class="name">portlet-mode</span>&gt;</span>preview<span class="tag">&lt;/<span class="name">portlet-mode</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Additionally the custom portlet mode must be declared for the portlet applications:</p>
+<p><strong>另外，自定义组件模型必须在组件应用中声明：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...   </span><br><span class="line">  <span class="tag">&lt;<span class="name">custom-portlet-mode</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Custom Preview Mode<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">portlet-mode</span>&gt;</span>preview<span class="tag">&lt;/<span class="name">portlet-mode</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">custom-portlet-mode</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/preview.png" alt="preview"></p>
+<h2 id="Cloning-Portlets"><a href="#Cloning-Portlets" class="headerlink" title="Cloning Portlets"></a>Cloning Portlets</h2><p>Portlets can be cloned from the Jetspeed Toolbox. Cloning a portlet creates an actual copy (clone) of the portlet in the portlet registry. When cloning a portlet, the end user is presented with a dialog for entering different preference values for the cloned portlet. This new feature is meant to facilitate the creation of variations of portlets, without the need to cut and paste the definitions in the portlet.xml. A typical use case could be a Weather portlet as shown below. For each city, the end user could create cloned variations of the base Weather portlet using the Clone dialog. The variation is based on the preferences, for example changing the title and city. Note that you must always change the name of the portlet, or you will not be allowed to create a new portlet. Portlet names must be unique in a portlet application. Note that when redeploying a portlet application, portlet clones will not be deleted. Clones can also be created and deleted from the Portlet Application Manager.</p>
+<p><strong>组件可以从Jetspeed工具箱中克隆。克隆组件就是在注册组件中创建一个实际拷贝（克隆）。当克隆组件时，最终用户会被出示一个对话框，来输入此克隆组件不同的首选项值。这个新功能意味着方便创建有差异的组件，而不需要在<code>portlet.xml</code>文档中通过剪切和粘贴来定义。一种典型的用例可能像下面展示的天气组件。每个城市，最终用户可以通过克隆对话框来创建基本天气组件的变体。变体基于首选项，例如改变标题和城市。注意，你必须总是改变组件的名称，否则你将不能创建新组件。组件名称必须在组件应用中是唯一的。注意，当重新部署组件应用时，克隆的组件不会被删除。克隆还可以从组件应用管理中创建和删除。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/clone.png" alt="clone"></p>
+<h2 id="Jetspeed-Page-Navigator"><a href="#Jetspeed-Page-Navigator" class="headerlink" title="Jetspeed Page Navigator"></a>Jetspeed Page Navigator</h2><p>The Jetspeed Page Navigator enables end users to navigate over and manage their own spaces, pages and folders. Additionally, in the hands of an administrator, the entire site can be easily managed using the Jetspeed Navigation. The view of the navigator is separated into three sections: </p>
+<p><strong>Jetspeed页面导航可以让最终用户导航并管理他们自己的空间，页面和文件夹。另外，在管理员手中，用Jetspeed导航可以轻松管理整个站点。导航视图分为三个部分：</strong></p>
+<ul>
+<li>The top section shows the current folder, and all of its contents</li>
+<li>An optional second section, showing the Links in the current folder</li>
+<li>A third section for adding new pages, folders, and links</li>
+</ul>
+<ul>
+<li><strong>顶部展示了当前文件夹，以及它的全部内容</strong></li>
+<li><strong>可选的第二部分，展示了当前文件夹里的链接</strong></li>
+<li><strong>第三部分是添加新页面，文件夹和链接</strong></li>
+</ul>
+<p>The top two sections are really just menus, which can be customized. The menus are looked for in the current folder or spaces folder.metadata. If there isn’t a menu definition, then the menu navigator will search up the folder tree to find a higher definition of a menu. For spaces, the default menus are defined with regular expressions: </p>
+<p><strong>前两部分真的只是可自定义的菜单。菜单寻找当前文件夹或空间的<code>folder.metadata</code>文档。如果这儿没有定义菜单，那么菜单导航将向上寻找文件夹树，以找到更高的菜单定义。对空间来说，默认菜单是使用正则表达式来定义：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">menu</span> name=<span class="string">"space-navigations"</span> regexp=<span class="string">"true"</span> options=<span class="string">"+/*/,+/*.psml"</span> depth=<span class="string">"-1"</span>/&gt;</span><br><span class="line">&lt;<span class="selector-tag">menu</span> name=<span class="string">"space-links"</span> regexp=<span class="string">"true"</span> options=<span class="string">"+/*.link"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Context-Menus"><a href="#Context-Menus" class="headerlink" title="Context Menus"></a>Context Menus</h3><p>All menu options have a context menu. The context menus only appear when you hover near the menu option name, appearing as a down arrow. Folders only have one context menu: Document Ordering. </p>
+<p><strong>所有的菜单设置里都有上下文菜单。上下文菜单仅仅当你经过菜单设置名称附近时才以下箭头的方式显示。文件夹只能有一个上下文：文档排序。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/doc-ordering.png" alt="doc-ordering"></p>
+<p>Document ordering allows you to change the order of menu options (pages) in the navigators menu. Pages items have four context menu options for managing pages: </p>
+<p><strong>文档排序允许你改变菜单设置（页面）在导航菜单里的顺序。页面自己有四个管理页面的上下文菜单选项：</strong></p>
+<ol>
+<li>Rename</li>
+<li>Move</li>
+<li>Copy</li>
+<li>Delete</li>
+</ol>
+<ol>
+<li><strong>重命名</strong></li>
+<li><strong>移动</strong></li>
+<li><strong>复制</strong></li>
+<li><strong>删除</strong></li>
+</ol>
+<p>Pages, Folders and Links can be Added to the current folder or space with the Add button at the bottom of the navigator. To add a page, give it a name, select a template, and press add. </p>
+<p><strong>用导航底部的添加按钮，可以向当前文件夹或空间里添加页面，文件夹和链接。要添加一个页面，给它一个名称，选择一个模板，并点击添加。</strong></p>
+<p><img src="http://portals.apache.org/jetspeed-2/deployguide/images/pagenav.png" alt="pagenav"></p>
+<p>Adding Folders and Links works the same as adding pages. The templates made available in the template option are configured in the portlet.xml of the j2-admin app </p>
+<p><strong>添加文件夹和链接的方式，跟添加页面一样。在<code>j2-admin</code>应用的<code>portlet.xml</code>文档中设置模板选项，以便使模板可用。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">portlet-preferences</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>defaultTemplatePage<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">        /_template/new-user/min.psml</span><br><span class="line">    <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">preference</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>templatePages<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">        /_template/new-user/min.psml</span><br><span class="line">        /_template/new-user/default-page.psml</span><br><span class="line">    <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">preference</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- If the following pref is blank, then the default admin role and admin user is used. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>spaceAdminRoles<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">preference</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">portlet-preferences</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>The templates can also be configured in the Portlet Application Manager.</p>
+<p><strong>也可以在组件应用管理中配置模板。</strong></p>
+<h2 id="Extensions-to-PSML"><a href="#Extensions-to-PSML" class="headerlink" title="Extensions to PSML"></a>Extensions to PSML</h2><p>PSML was extended in version 2.2.1 to support many of the JetUI features. PSML Templates are a new feature allowing for toolbars and space navigators to appear across all pages without needing to declare the portlets and layouts for each and every page. Instead, fragments can be automatically merged with any page using page templates or fragment references. </p>
+<p><strong>在2.2.1版本中，PSML被扩展了，以便来支持JetUI的很多功能。PSML模板是一个新功能，它允许工具条和空间导航在所有页面显示，而不用在每个页面中声明组件和布局。相反，通过使用页面模板或片段引用，任意页面的碎片都可以自动合并。</strong></p>
+<p>Fragments had two new attributes added to support multi-user customizations of fragment properties. These two attributes are scope and scopeValue. The one scope supported is user, where the scopeValue is set to the name of the user. This allows for per user fragment customizations. Beware that if lots of users start customizing fragments, you might want to store your pages in the database and not the file system. Scope and scopeValue can be combined with any fragment property, including the new set of properties described below. </p>
+<p><strong>片段添加了两个新属性，以支持多用户的片段特性定制。这两个属性是<code>scope</code>和<code>scopeValue</code>。<code>scope</code>只支持一个值<code>user</code>，此处的<code>scopeValue</code>设置为<code>user</code>的名字。这就允许每个用户自定义片段。当心，如果大量的用户开始自定义片段，那么你就要把页面存储到数据库中，而不是文件系统中。<code>scope</code>和<code>scopeValue</code>可以与任何片段特性结合，包括新的特性描述设置，如下所述。</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"dp-22"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::ForgottenPasswordPortlet"</span>&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"width"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"dave"</span> value=<span class="string">"1121.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"height"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"dave"</span> value=<span class="string">"120.0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"admin"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<p>New properties were added to support drag and drop, resizing, detaching, and docking. Here are some examples: </p>
+<p><strong>添加了支持拖拽，调整大小，分离，以及停靠的新特性。这是一些例子：</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"y"</span> value=<span class="string">"300"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"x"</span> value=<span class="string">"20"</span>&gt;&lt;/<span class="keyword">property</span>&gt;            </span><br><span class="line">            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"detach"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">...</span><br><span class="line">	    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='toolbar' value='<span class="literal">true</span>'&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> scope=<span class="string">"user"</span> scopeValue=<span class="string">"guest"</span> value=<span class="string">"closed"</span>&gt;&lt;/<span class="keyword">property</span>&gt;	    </span><br><span class="line">	    &lt;<span class="keyword">property</span> <span class="built_in">name</span>='<span class="built_in">class</span>' value='jsRightToolbar'&gt;&lt;/<span class="keyword">property</span>&gt;                                </span><br><span class="line">	    &lt;fragment <span class="built_in">id</span>=<span class="string">"jsToolbox"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::JetspeedToolbox"</span>&gt;</span><br><span class="line">	            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">	            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"0"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">	            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"state"</span> value=<span class="string">"normal"</span>&gt;&lt;/<span class="keyword">property</span>&gt;                        </span><br><span class="line">	            &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"tool"</span> value=<span class="string">"true"</span>&gt;&lt;/<span class="keyword">property</span>&gt;	                                    </span><br><span class="line">	    &lt;/fragment&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>values</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>state</td>
+<td>normal,detach,closed</td>
+<td>the window state of a fragment, either detached or attached (normal) or closed (for a user or set of users)</td>
+</tr>
+<tr>
+<td>toolbar</td>
+<td>true,false</td>
+<td>Is this fragment a toolbar</td>
+</tr>
+<tr>
+<td>toolbar</td>
+<td>true,false</td>
+<td>Is this fragment a tool in a toolbar?</td>
+</tr>
+<tr>
+<td>x</td>
+<td>numeric screen value</td>
+<td>The x position of a detached portlet</td>
+</tr>
+<tr>
+<td>y</td>
+<td>numeric screen value</td>
+<td>The y position of a detached portlet</td>
+</tr>
+<tr>
+<td>width</td>
+<td>numeric screen value</td>
+<td>The width of a resized, detached portlet</td>
+</tr>
+<tr>
+<td>height</td>
+<td>numeric screen value</td>
+<td>The height of a resized, detached portlet</td>
+</tr>
+<tr>
+<td>class</td>
+<td>a CSS class name</td>
+<td>The CSS style to apply to a given fragment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Jetspeed-Properties-Configurations"><a href="#Jetspeed-Properties-Configurations" class="headerlink" title="Jetspeed Properties Configurations"></a>Jetspeed Properties Configurations</h2><p>To manually configure JetUI properties, edit the WEB-INF/conf/jetspeed.properties (or WEB-INF/conf/override.properties) </p>
+<p><strong>要手动配置JetUI特性，编辑<code>WEB-INF/conf/jetspeed.properties</code>（或<code>WEB-INF/conf/override.properties</code>）</strong></p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>values</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jetui.customization.method</td>
+<td>ajax,server</td>
+<td>To use JetUI customization engine, set to ajax. To turn on Jetspeed Classic rendering engine, set to server<br><br><strong>使用JetUI自定义引擎，设置为<code>ajax</code>。要转到Jetspeed经典呈现引擎，设置为<code>server</code>。</strong></td>
+</tr>
+<tr>
+<td>jetui.render.engine</td>
+<td>CSRE,SSRE</td>
+<td>Set the JetUI rendering engine to Client Side Rendering Engine or Server Side Rendering Engine. <br><br><strong>设置JetUI呈现引擎为客户端呈现引擎或服务端呈现引擎。</strong></td>
+</tr>
+<tr>
+<td>jetui.ajax.transport</td>
+<td>json</td>
+<td>Transport for all REST API calls made by the JetUI customization engine. Currently only JSON supported.<br><br><strong>全部的REST API调用由JetUI自定义引擎传输。目前只支持JSON。</strong></td>
+</tr>
+<tr>
+<td>jetui.render.template</td>
+<td>/WEB-INF/jetui/yui/jetui.jsp</td>
+<td>The out of the box JetUI rendering JSP template for rendering merged pages<br><br><strong>开箱即用的JetUI呈现JSP模板，用于呈现合并页面。</strong></td>
+</tr>
+<tr>
+<td>jetui.drag.mode</td>
+<td>full</td>
+<td>Only supports full, which drag entire window full size, drop on other portlets targets. Future support would drag a small icon.<br><br><strong>只支持<code>full</code>，拖动整个窗口尺寸，放置到其他组件目标上。将来会支持拖动小图标。</strong></td>
+</tr>
+<tr>
+<td>jetui.style.portlet</td>
+<td>.portal-layout-cell</td>
+<td>CSS style for JetUI portlet windows, also used to identify and find all portlets</td>
+</tr>
+<tr>
+<td>jetui.style.layout</td>
+<td>.portal-layout-column</td>
+<td>CSS style for JetUI layout windows, also used to identify and find all layout containers</td>
+</tr>
+<tr>
+<td>jetui.style.drag.handle</td>
+<td>.PTitle</td>
+<td>CSS style for JetUI title bars, also used as a handle of portlet windows to drag from</td>
+</tr>
+<tr>
+<td>pipeline.default</td>
+<td>jetspeed-pipeline</td>
+<td>set the default pipeline, although it is not necessary if you directly hit the JetUI pipeline by addressing all URLs with /jetspeed/ui instead of /jetspeed/portal<br><br><strong>设置默认管道，尽管它不是必须的，如果你直接访问有<code>/jetspeed/ui</code>的链接，而不是<code>/jetspeed/portal</code>链接。</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="JetUI-Pipeline-Configurations"><a href="#JetUI-Pipeline-Configurations" class="headerlink" title="JetUI Pipeline Configurations"></a>JetUI Pipeline Configurations</h2><p>A key component of the Jetspeed-2 portal engine is its request pipeline. All requests to the portal are ran through a set of Spring configurable pipelines, where each node in the pipeline flow is called a Valve. Pipelines are configured in the WEB-INF/assembly/pipelines.xml file. See the Pipelines Guide for more information. The JetUI rendering engine is configured through its own pipeline in pipelines.xml. Look for the configuration bean named jetui-pipeline. </p>
+<p><strong>Jetspeed-2门户引擎的一个关键组成部分就是它的请求管道。门户的所有请求都通过Spring配置管道组运行，在管道流中的每个节点称为阀。管道是在<code>WEB-INF/assembly/pipelines.xml</code>文档中配置的。请参阅<a href="http://portals.apache.org/jetspeed-2/devguide/guide-pipeline.html" target="_blank" rel="external">管道指南</a>的详细信息。在<code>pipelines.xml</code>文档中，JetUI呈现引擎通过它自己的管道来配置。查找名为<code>jetui-pipeline</code>的配置bean。</strong></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"jetui-pipeline"</span> class=<span class="string">"org.apache.jetspeed.pipeline.JetspeedPipeline"</span> init-<span class="keyword">method</span>=<span class="string">"initialize"</span>&gt;</span><br><span class="line">    &lt;meta key=<span class="string">"j2:cat"</span> value=<span class="string">"default"</span> /&gt;</span><br><span class="line">    &lt;constructor-arg&gt;</span><br><span class="line">        &lt;value&gt;<span class="type">JetuiPipeline</span>&lt;/value&gt;</span><br><span class="line">    &lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg&gt;</span><br><span class="line">        &lt;list&gt;</span><br><span class="line">        &lt;<span class="keyword">ref</span> bean=<span class="string">"capabilityValve"</span> /&gt;</span><br><span class="line">        &lt;<span class="keyword">ref</span> bean=<span class="string">"portalURLValve"</span> /&gt;</span><br><span class="line">        &lt;<span class="keyword">ref</span> bean=<span class="string">"securityValve"</span> /&gt;</span><br><span class="line">    ...</span><br><span class="line">        &lt;<span class="keyword">ref</span> bean=<span class="string">"jetuiValve"</span> /&gt;</span><br><span class="line">        &lt;<span class="keyword">ref</span> bean=<span class="string">"cleanUpValve"</span> /&gt;</span><br><span class="line">        &lt;/list&gt;</span><br><span class="line">    &lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>You may want the classic pipeline to be completely turned off. Out of the box, it is not. To get /jetspeed/portal to go to the JetUI pipeline, change the pipelines.xml pipeline-map bean to: </p>
+<p><strong>你可能想要完全关闭经典的管道。开箱时，它并没有关闭。为了让<code>/jetspeed/portal</code>链接使用JetUI管道，要修改<code>pipelines.xml</code>文档中的<code>pipeline-map</code>bean：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">'pipeline-map'</span> <span class="attr">class</span>=<span class="string">'java.util.LinkedHashMap'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">key</span>=<span class="string">"j2:cat"</span> <span class="attr">value</span>=<span class="string">"default"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">'/portal'</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>jetui-pipeline<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/05/Jetspeed-JetUI翻译/" data-id="cintou6ak0004tslo9ehgkg8q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Jetspeed-指南-Customizing Your Portal Design翻译-05" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/" class="article-date">
@@ -114,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/" data-id="cinct7655000g30lolooeawbn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/" data-id="cintou6az000itslom538jx9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -162,7 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/" data-id="cinct764u000a30lo6u2tgxg8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-04/" data-id="cintou6ay000gtslo4kme1r4l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -230,7 +622,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/" data-id="cinct765c000n30loreynjlh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-03/" data-id="cintou6b2000ltslobtqz1mq2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -393,7 +785,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" data-id="cinct764p000730loi7l0h2m4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/" data-id="cintou6as000dtslozu8krd3i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -452,7 +844,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" data-id="cinct764y000d30lolb6ow9qd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/" data-id="cintou6aq000atsloxbw41ayc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -594,7 +986,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/07/Jetspeed-Decorators翻译/" data-id="cinct764g000130loabas3cjv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/07/Jetspeed-Decorators翻译/" data-id="cintou6ac0000tslo8ia19j3u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -637,9 +1029,9 @@
 <li><a href="#Page">Page</a><ul>
 <li><a href="#Layout-Fragments">Layout Fragments</a></li>
 <li><a href="#Portlet-Fragments">Portlet Fragments</a></li>
-<li>Fragment References</li>
-<li>Fragment Properties</li>
-<li>Portlet Preferences</li>
+<li><a href="#Fragment-References">Fragment References</a></li>
+<li><a href="#Fragment-Properties">Fragment Properties</a></li>
+<li><a href="#Preferences">Portlet Preferences</a></li>
 </ul>
 </li>
 <li>Dynamic Page</li>
@@ -936,15 +1328,82 @@
 <p>Example:</p>
 <p><em>示例：</em></p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment-<span class="keyword">reference</span> <span class="built_in">id</span>=<span class="string">"template-top-wp-reference"</span> refid=<span class="string">"wp-definition"</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"2"</span>/&gt;</span><br><span class="line">&lt;/fragment-<span class="keyword">reference</span>&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="Fragment-Properties"><a href="#Fragment-Properties" class="headerlink" title="Fragment Properties"></a>Fragment Properties</h2><blockquote>
-<p>未翻译</p>
-</blockquote>
-<h2 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h2><blockquote>
-<p>未翻译</p>
-</blockquote>
+<h2 id="Fragment-Properties"><a href="#Fragment-Properties" class="headerlink" title="Fragment Properties"></a>Fragment Properties</h2><p>The fragment <property> element is use to specify named properties for fragments. These properties are used commonly to specify layout portlet parameters and portlet positional location within the page. The property element has 3 supported attributes: </property></p>
+<p><em>片段<code>&lt;property&gt;</code>元素用于给片段的指定特性命名。这些特性通常用于指定布局组件参数和组件在页面中的定位位置。特性元素具有3个支持的属性：</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>layout (deprecated)</td>
+<td>The symbolic name of the layout fragment portlet the property is associated with. This attribute is supported for compatibility reasons. The strictly hierarchical structure of layout and portlet fragments implies that any single fragment and its properties can be subject to one layout fragment portlet.<br><br><em>（已弃用）</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The fragment property name. Jetspeed2 layout portlets support the ‘row’, ‘column’ and ‘sizes’ properties.<br><br><em>（片段特性名称。Jetspeed2布局组件支持<code>row</code>，<code>column</code>和<code>sizes</code>特性。）</em></td>
+</tr>
+<tr>
+<td>value</td>
+<td>The fragment property value. The ‘row’ and ‘column’ properties accept 0-based indicies values. The ‘sizes’ property accepts HTML frameset tag ‘rows’ and ‘cols’ attributes sytax, (i.e. ‘25%,75%’).<br><br><em>（片段特性值。<code>row</code>和<code>column</code>特性接受基于0的索引值。<code>sizes</code>特性接受<code>HTML frameset</code>标签的<code>rows</code>和<code>cols</code>属性语法，例如<code>25%,75%</code>）。</em></td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<p><em>示例：</em></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"100876"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::LoginPortlet"</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"2"</span>/&gt;</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"1"</span>/&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"103456"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityTwoColumns"</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"sizes"</span> value=<span class="string">"33%,66%"</span>/&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h2><p>The portlet fragment <preference> elements allow for the defining of default portlet preference values. This provides an easier avenue for the setting of default portlet preferences for a portlet instance on a page without having to duplicate portlet definitions within the portlet application’s portlet.xml. </preference></p>
+<p><em>组件片段的<code>&lt;preference&gt;</code>元素允许定义组件首选项的默认值。提供一个较容易的途径，在页面中设定组件实例的默认首选项，无需在组件应用的<code>portlet.xml</code>文件中重复组件定义。</em></p>
+<p>Preference precedence: User Defined &gt; Fragment Defined &gt; portlet.xml Defined. </p>
+<p><em>首选项的优先级：用户定义 &gt; 片段定义 &gt; <code>portlet.xml</code>文件定义。</em></p>
+<p>The <preference> element attributes:</preference></p>
+<p><em><code>&lt;preference&gt;</code>元素属性：</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>The name of the preference.<br><br><em>（首选项的名称）</em></td>
+</tr>
+<tr>
+<td>readOnly</td>
+<td>Boolean indicating whether or not the user can change the value of this preference.<em>（布尔值，该值指示用户可以更改此首选项的值。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>The <preference> element contains these elements:</preference></p>
+<p><em><code>&lt;preference&gt;</code>元素包含这些元素：</em></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value+</td>
+<td>Simple text element containing a value associated with the named preference.<br><br><em>（包含一个命名的首选项与关联值的简单的文本元素。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<p><em>示例：</em></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fragment</span> <span class="attr">id</span>=<span class="string">"uhtemp-1012"</span> <span class="attr">type</span>=<span class="string">"portlet"</span> <span class="attr">name</span>=<span class="string">"demo::BookmarkPortlet"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"Google"</span> <span class="attr">readOnly</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>http://www.google.com<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">preference</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">fragment</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="Dynamic-Page"><a href="#Dynamic-Page" class="headerlink" title="Dynamic Page"></a>Dynamic Page</h2><blockquote>
 <p>未翻译</p>
 </blockquote>
+<p>The <dynamic-page> element defines a reusable page that is used to display any matching portal content request URLs in the portal site. Individual dynamic pages are selected by the portal site mappings of the portal URL paths and content type. Apart from this matching process, content pages are identical to concrete page definitions. There are two attributes supported by the dynamic page element in addition to the page element attributes and child elements: </dynamic-page></p>
+<p><em><code>&lt;dynamic-page&gt;</code>元素定义了一个可复用的页面，用于</em></p>
 <h2 id="Page-Template"><a href="#Page-Template" class="headerlink" title="Page Template"></a>Page Template</h2><blockquote>
 <p>未翻译</p>
 </blockquote>
@@ -979,7 +1438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cinct764m000430loiyenjurh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cintou6ag0001tslonr0wav9u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -1088,7 +1547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cinct764b000030lok8fhmmam" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-Template翻译/" data-id="cintou6al0005tsloonk7bwe3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -1274,54 +1733,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cinct764n000530loyf5ej9lx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/01/Jetspeed-Layouts翻译/" data-id="cintou6an0007tslor2wgkzbu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-桃花庵歌" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/29/桃花庵歌/" class="article-date">
-  <time datetime="2016-03-29T08:44:00.000Z" itemprop="datePublished">2016-03-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/测试/">测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/29/桃花庵歌/">桃花庵歌</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>桃花庵歌<br>朝代：明代<br>作者：唐寅<br>原文：<br>桃花坞里桃花庵，桃花庵下桃花仙。<br>桃花仙人种桃树，又折花枝当酒钱。<br>酒醒只在花前坐，酒醉还须花下眠。<br>花前花后日复日，酒醉酒醒年复年。<br>不愿鞠躬车马前，但愿老死花酒间。<br>车尘马足贵者趣，酒盏花枝贫者缘。<br>若将富贵比贫贱，一在平地一在天。<br>若将贫贱比车马，他得驱驰我得闲。<br>世人笑我太疯癫，我笑世人看不穿。<br>记得五陵豪杰墓，无酒无花锄作田。</p>
-<p>土匪国里土匪党，土匪党下土匪帮；<br>土匪党帮串豪富，又杀平民夺产田<br>人前高叫是公仆，背后尽把财色贪；<br>半败半腐日复日，贪财贪色年复年<br>但愿老死权贵间，不愿鞠躬屁民前；<br>天上人间权者趣，海天盛筵富者缘<br>若将民主比专政，一在平地一在天；<br>若将专政比垄断，它占资源又弄权<br>别人笑我太疯癫，我笑他人看不穿；<br>舔菊五毛遍地是，无数脑残评论员<br>还有成批奴才狗，砖家叫兽扎堆骗；<br>寡廉鲜耻当高尚，贱卖灵魂辱祖先！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/29/桃花庵歌/" data-id="cinct765g000r30lowb1j9rbi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
 
     </footer>
   </div>
@@ -1343,7 +1758,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -1352,7 +1767,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1370,7 +1785,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1380,6 +1795,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/05/Jetspeed-JetUI翻译/">Jetspeed-JetUI翻译</a>
+          </li>
         
           <li>
             <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/">Jetspeed官方指南-自定义你的门户设计-05</a>
@@ -1395,10 +1814,6 @@
         
           <li>
             <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/">Jetspeed官方指南-自定义你的门户设计-02</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/">Jetspeed官方指南-自定义你的门户设计-01</a>
           </li>
         
       </ul>

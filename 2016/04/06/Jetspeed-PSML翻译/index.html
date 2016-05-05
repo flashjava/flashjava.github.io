@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/index.html">
 <meta property="og:site_name" content="北斗的博客">
 <meta property="og:description" content="翻译Jetspeed的PSML文档。">
-<meta property="og:updated_time" content="2016-04-23T07:05:36.343Z">
+<meta property="og:updated_time" content="2016-04-26T02:25:32.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetspeed官方手册-PSML">
 <meta name="twitter:description" content="翻译Jetspeed的PSML文档。">
@@ -95,9 +95,9 @@
 <li><a href="#Page">Page</a><ul>
 <li><a href="#Layout-Fragments">Layout Fragments</a></li>
 <li><a href="#Portlet-Fragments">Portlet Fragments</a></li>
-<li>Fragment References</li>
-<li>Fragment Properties</li>
-<li>Portlet Preferences</li>
+<li><a href="#Fragment-References">Fragment References</a></li>
+<li><a href="#Fragment-Properties">Fragment Properties</a></li>
+<li><a href="#Preferences">Portlet Preferences</a></li>
 </ul>
 </li>
 <li>Dynamic Page</li>
@@ -394,15 +394,82 @@
 <p>Example:</p>
 <p><em>示例：</em></p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment-<span class="keyword">reference</span> <span class="built_in">id</span>=<span class="string">"template-top-wp-reference"</span> refid=<span class="string">"wp-definition"</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"2"</span>/&gt;</span><br><span class="line">&lt;/fragment-<span class="keyword">reference</span>&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="Fragment-Properties"><a href="#Fragment-Properties" class="headerlink" title="Fragment Properties"></a>Fragment Properties</h2><blockquote>
-<p>未翻译</p>
-</blockquote>
-<h2 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h2><blockquote>
-<p>未翻译</p>
-</blockquote>
+<h2 id="Fragment-Properties"><a href="#Fragment-Properties" class="headerlink" title="Fragment Properties"></a>Fragment Properties</h2><p>The fragment <property> element is use to specify named properties for fragments. These properties are used commonly to specify layout portlet parameters and portlet positional location within the page. The property element has 3 supported attributes: </property></p>
+<p><em>片段<code>&lt;property&gt;</code>元素用于给片段的指定特性命名。这些特性通常用于指定布局组件参数和组件在页面中的定位位置。特性元素具有3个支持的属性：</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>layout (deprecated)</td>
+<td>The symbolic name of the layout fragment portlet the property is associated with. This attribute is supported for compatibility reasons. The strictly hierarchical structure of layout and portlet fragments implies that any single fragment and its properties can be subject to one layout fragment portlet.<br><br><em>（已弃用）</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The fragment property name. Jetspeed2 layout portlets support the ‘row’, ‘column’ and ‘sizes’ properties.<br><br><em>（片段特性名称。Jetspeed2布局组件支持<code>row</code>，<code>column</code>和<code>sizes</code>特性。）</em></td>
+</tr>
+<tr>
+<td>value</td>
+<td>The fragment property value. The ‘row’ and ‘column’ properties accept 0-based indicies values. The ‘sizes’ property accepts HTML frameset tag ‘rows’ and ‘cols’ attributes sytax, (i.e. ‘25%,75%’).<br><br><em>（片段特性值。<code>row</code>和<code>column</code>特性接受基于0的索引值。<code>sizes</code>特性接受<code>HTML frameset</code>标签的<code>rows</code>和<code>cols</code>属性语法，例如<code>25%,75%</code>）。</em></td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<p><em>示例：</em></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"100876"</span> type=<span class="string">"portlet"</span> <span class="built_in">name</span>=<span class="string">"j2-admin::LoginPortlet"</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"row"</span> value=<span class="string">"2"</span>/&gt;</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"column"</span> value=<span class="string">"1"</span>/&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;fragment <span class="built_in">id</span>=<span class="string">"103456"</span> type=<span class="string">"layout"</span> <span class="built_in">name</span>=<span class="string">"jetspeed-layouts::VelocityTwoColumns"</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"sizes"</span> value=<span class="string">"33%,66%"</span>/&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/fragment&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h2><p>The portlet fragment <preference> elements allow for the defining of default portlet preference values. This provides an easier avenue for the setting of default portlet preferences for a portlet instance on a page without having to duplicate portlet definitions within the portlet application’s portlet.xml. </preference></p>
+<p><em>组件片段的<code>&lt;preference&gt;</code>元素允许定义组件首选项的默认值。提供一个较容易的途径，在页面中设定组件实例的默认首选项，无需在组件应用的<code>portlet.xml</code>文件中重复组件定义。</em></p>
+<p>Preference precedence: User Defined &gt; Fragment Defined &gt; portlet.xml Defined. </p>
+<p><em>首选项的优先级：用户定义 &gt; 片段定义 &gt; <code>portlet.xml</code>文件定义。</em></p>
+<p>The <preference> element attributes:</preference></p>
+<p><em><code>&lt;preference&gt;</code>元素属性：</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>The name of the preference.<br><br><em>（首选项的名称）</em></td>
+</tr>
+<tr>
+<td>readOnly</td>
+<td>Boolean indicating whether or not the user can change the value of this preference.<em>（布尔值，该值指示用户可以更改此首选项的值。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>The <preference> element contains these elements:</preference></p>
+<p><em><code>&lt;preference&gt;</code>元素包含这些元素：</em></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value+</td>
+<td>Simple text element containing a value associated with the named preference.<br><br><em>（包含一个命名的首选项与关联值的简单的文本元素。）</em></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<p><em>示例：</em></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fragment</span> <span class="attr">id</span>=<span class="string">"uhtemp-1012"</span> <span class="attr">type</span>=<span class="string">"portlet"</span> <span class="attr">name</span>=<span class="string">"demo::BookmarkPortlet"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"Google"</span> <span class="attr">readOnly</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>http://www.google.com<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">preference</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">fragment</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="Dynamic-Page"><a href="#Dynamic-Page" class="headerlink" title="Dynamic Page"></a>Dynamic Page</h2><blockquote>
 <p>未翻译</p>
 </blockquote>
+<p>The <dynamic-page> element defines a reusable page that is used to display any matching portal content request URLs in the portal site. Individual dynamic pages are selected by the portal site mappings of the portal URL paths and content type. Apart from this matching process, content pages are identical to concrete page definitions. There are two attributes supported by the dynamic page element in addition to the page element attributes and child elements: </dynamic-page></p>
+<p><em><code>&lt;dynamic-page&gt;</code>元素定义了一个可复用的页面，用于</em></p>
 <h2 id="Page-Template"><a href="#Page-Template" class="headerlink" title="Page Template"></a>Page Template</h2><blockquote>
 <p>未翻译</p>
 </blockquote>
@@ -437,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cinct764m000430loiyenjurh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/Jetspeed-PSML翻译/" data-id="cintou6ag0001tslonr0wav9u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetspeed/">Jetspeed</a></li></ul>
@@ -476,7 +543,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/">全部</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/全部/Jetspeed/">Jetspeed</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全部/测试/">测试</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -485,7 +552,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetspeed/">Jetspeed</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -503,7 +570,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -513,6 +580,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/05/Jetspeed-JetUI翻译/">Jetspeed-JetUI翻译</a>
+          </li>
         
           <li>
             <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-05/">Jetspeed官方指南-自定义你的门户设计-05</a>
@@ -528,10 +599,6 @@
         
           <li>
             <a href="/2016/04/09/Jetspeed-指南-Customizing Your Portal Design翻译-02/">Jetspeed官方指南-自定义你的门户设计-02</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/08/Jetspeed-指南-Customizing Your Portal Design翻译-01/">Jetspeed官方指南-自定义你的门户设计-01</a>
           </li>
         
       </ul>
